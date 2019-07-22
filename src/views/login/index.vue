@@ -74,9 +74,10 @@
                         try {
                             const res = await this.login(this.formObj);
                             if(res.code === 20000){//TODO跳转主界面
-
+                                this.loading = false;
+                                this.$router.push('/');
                             }
-                            this.loading = false;
+
                         }catch (err){
                             this.loading = false;
                         }

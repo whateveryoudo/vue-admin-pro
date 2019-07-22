@@ -1,5 +1,5 @@
 
-const port = process.env.port || process.env.npm_config_port || 8080 // dev port
+const port = process.env.port || process.env.npm_config_port || 8081 // dev port
 
 module.exports = {
     devServer : {
