@@ -1,0 +1,13 @@
+//一些scss变量参数
+
+
+$sideBarWidth : 210px;
+
+$menuBg:#304156;
+$navBarBg:#2b2f3a;
+
+
+:export{
+  menuBg: $menuBg;
+  navBarBg : $navBarBg;
+}

@@ -68,6 +68,8 @@
         methods : {
             ...mapActions('user',['login']),
              handleLogin(){
+                 this.$router.push('/');
+                 return;
                 this.$refs.loginForm.validate(async valid => {
                     if(valid){
                         this.loading = true;

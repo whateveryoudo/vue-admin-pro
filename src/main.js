@@ -6,7 +6,7 @@ import Element from 'element-ui'
 
 import 'normalize.css/normalize.css' // a modern alternative to CSS resets
 import 'element-ui/lib/theme-chalk/index.css';
-
+import './permission.js'
 import '@/styles/index.scss' // global css
 
 Vue.config.productionTip = false
