@@ -43,10 +43,6 @@ const main2ChildRouters = [
 //不需要判断动态判断权限的路由（一些通用页面）
 
 export const  constantRoutes = [
-    // {
-    //     path : '/',
-    //     redirect: '/login',
-    // },
     {
         path: '/login',
         component: () => import('@/views/login/index'),

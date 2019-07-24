@@ -68,8 +68,7 @@
         methods : {
             ...mapActions('user',['login']),
              handleLogin(){
-                 this.$router.push('/');
-                 return;
+//                 this.$router.push('/');
                 this.$refs.loginForm.validate(async valid => {
                     if(valid){
                         this.loading = true;
@@ -78,6 +77,14 @@
                             if(res.code === 20000){//TODO跳转主界面
                                 this.loading = false;
                                 this.$router.push('/');
+                                const h = this.$createElement;//自定义node
+                                this.$message({
+                                    message: h('p', null, [
+                                        h('i', { style: 'color: rgb(64, 158, 255);marginRight:5px' }, 'ykx,'),
+                                        h('span', null, '欢迎回来 ')
+                                    ]),
+                                    type: 'success'
+                                });
                             }
 
                         }catch (err){

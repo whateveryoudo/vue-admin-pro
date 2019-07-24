@@ -23,7 +23,7 @@ exports.user = [
                 }
                 return {
                     code : 20000,
-                    data : token
+                    data : {token}
                 }
             }
         }

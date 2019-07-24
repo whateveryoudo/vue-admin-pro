@@ -1,10 +1,18 @@
 import { login} from '@/api/user'
+import {getToken,setToken} from '@/utils'
 
 const state = {
-    name : 'ykx'
+    name : '',
+    token : getToken(),//默认获取本地存储的
+    roles : []
 }
 const mutations  = {
-
+    SET_TOKEN : (state,token) => {
+        state.token = token;
+    },
+    SET_ROLES: (state, roles) => {
+        state.roles = roles
+    }
 }
 const actions = {
       //async
@@ -13,9 +21,10 @@ const actions = {
         // return await login({username : username.trim(),password});
         return new Promise((resolve,reject) => {
             login({username : username.trim(),password}).then(res => {
-                // const {data} = res;
-                //TODO 将token保存 vuex & 本地
-
+                const {token} = res.data;
+                //将token保存 vuex & 本地
+                commit('SET_TOKEN',token);
+                setToken(token);
                 resolve(res);
             }).catch(err => {
                 reject(err);

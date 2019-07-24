@@ -5,9 +5,12 @@ $sideBarWidth : 210px;
 
 $menuBg:#304156;
 $navBarBg:#2b2f3a;
-
+$menuActiveColor : #409EFF;
+$menuText : #bfcbd9;
 
 :export{
   menuBg: $menuBg;
+  menuText : $menuText;
   navBarBg : $navBarBg;
+  menuActiveColor : $menuActiveColor;
 }

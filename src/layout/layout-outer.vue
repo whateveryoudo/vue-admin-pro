@@ -24,6 +24,9 @@
 
             }
         },
+        created(){
+
+        },
         computed : {
             ...mapGetters([
                 'open'
@@ -67,7 +70,6 @@
                 margin-left: 54px;
             }
         }
-
     }
 
 </style>

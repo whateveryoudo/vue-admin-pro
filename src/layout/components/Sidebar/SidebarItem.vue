@@ -18,7 +18,7 @@
                     v-for="child in item.children"
                     :key="child.path"
                     :item="child"
-                    :base-path="child.path"
+                    :base-path="resolvePath(child.path)"
             ></SidebarItem>
         </el-submenu>
     </div>
@@ -44,6 +44,7 @@
             AppLink
         },
         computed : {
+
             showOneChildMenu () {
                 let children = this.item.children || [];
                 console.log(children.some(item => !item.hidden));
@@ -60,7 +61,7 @@
                     }
                 });
                 if(showChildren.length === 0){
-                    return {...parent,path : ''};
+                    return {...parent,path : ''};//这里加入'' 取得相对路径
                 }else if(showChildren.length === 1){
                     return showChildren[0];
                 }
@@ -69,6 +70,7 @@
             }
         },
         methods : {
+
             resolvePath(routePath){
                 if(isExternal(routePath)){
                     return routePath;
@@ -76,7 +78,8 @@
                 if(isExternal(this.basePath)){
                     return this.basePath;
                 }
-                return path.resolve(this.basePath, routePath)//返回完整的路径
+//                console.log(this.basePath,routePath);
+                return path.resolve(this.basePath, routePath)//返回完整的路径 如：example  goodsList => /example goodsList
             }
         }
     }

@@ -4,13 +4,18 @@
         <!--   左边菜单列表     -->
         <el-scrollbar>
             <el-menu
-                :collapse="!open"
+                    :default-active="activeMenu"
+                    :background-color="variables.menuBg"
+                    :text-color="variables.menuText"
+                    :active-text-color="variables.menuActiveColor"
+                    :collapse="!open"
             >
+                <!-- 注意：这里采用二级路由遍历,故在根路由添加当前navpath-->
                 <SidebarItem
                         v-for="route in currentMenuRoutes"
                         :key="route.path"
                         :item="route"
-                        :base-path="route.path"
+                        :base-path="`${mainNavPath}/${route.path}`"
                 >
 
                 </SidebarItem>
@@ -20,7 +25,8 @@
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
+    import {mapGetters,mapState} from 'vuex'
+    import variables from '@/styles/variables.scss'
     import SidebarItem from './SidebarItem'
     import Logo from './Logo.vue'
     export default {
@@ -31,14 +37,27 @@
         },
         components : {Logo,SidebarItem},
         computed : {
+            ...mapState('permission',['mainNavPath']),
             ...mapGetters({
                 open : 'open',
                 currentMenuRoutes : 'permission/currentMenuRoutes'
-            })
+            }),
+            variables() { //TODO 修改为引用scss的变量（做主题配置）
+                return variables
+            },
+            activeMenu(){
+                return this.$route.path;
+            }
         }
     }
 </script>
-
+<style lang="scss">
+    .sidebar-container{
+        .el-menu{
+            border: none;//去除右边框
+        }
+    }
+</style>
 <style lang="scss" scoped>
     .sidebar-container{
         transition: width 0.28s;
