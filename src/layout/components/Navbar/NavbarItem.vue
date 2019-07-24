@@ -1,6 +1,6 @@
 <template>
     <!--这里只会做单层遍历,为根节点-->
-    <el-menu-item :index="basePath" v-if="!item.hidden">
+    <el-menu-item :index="basePath" v-if="!item.hidden && !item.hiddenInNavbar">
             {{item.meta.title}}
         <!--{{basePath}}-->
     </el-menu-item>

@@ -10,34 +10,32 @@ import LayoutInner from '@/layout/layout-inner'
 
 const main1ChildRouters = [
     {
-        path: 'main1',
-        component: LayoutInner,
-        redirect: '/main1/dashboard',
-        children: [
-            {
-                path: 'dashboard',
-                component: () => import('@/views/main1/dashboard/index'),
-                name: 'Dashboard',
-                meta: { title: 'Dashboard', icon: 'dashboard'}
-            }
-        ]
+        path: 'dashboard',
+        name: 'Dashboard',
+        component: () => import('@/views/main1/dashboard/index'),
+        meta: { title: 'Dashboard', icon: 'dashboard'}
     },
 ]
-
-
 
 const main2ChildRouters = [
     {
         path: 'example',
         component: LayoutInner,
         redirect: '/main2/example/goodsList',
+        meta: { title: '表格', icon: 'dashboard'},
         children: [
             {
                 path: 'goodsList',
                 component: () => import('@/views/main2/example/goodsList'),
                 name: 'GoodsList',
-                meta: { title: 'GoodsList', icon: 'dashboard'}
-            }
+                meta: { title: '商品列表', icon: 'dashboard'}
+            },
+            {
+                path: 'userList',
+                component: () => import('@/views/main2/example/userList'),
+                name: 'UserList',
+                meta: { title: '用户列表', icon: 'dashboard'}
+            },
         ]
     },
 ]
@@ -59,9 +57,15 @@ export const  constantRoutes = [
 //需要根据用户角色 判断的路由
 export const asyncRoutes = [
     {
-        path : '\/',
+        path : '/',
         component: LayoutOuter,
         redirect: '/main1',
+        hiddenInNavbar : true
+    },
+    {
+        path : '/main1',
+        component: LayoutOuter,
+        redirect: '/main1/dashboard',
         children : main1ChildRouters,
         meta : {
             title : '菜单一'

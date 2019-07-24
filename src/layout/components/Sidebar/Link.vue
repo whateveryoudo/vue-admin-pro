@@ -1,10 +1,12 @@
 <template>
-    <div>我是商品列表页面</div>
+    <div>
+        <slot></slot>
+    </div>
 </template>
 
 <script>
     export default {
-        name: "GoodsList"
+        name: "Link"
     }
 </script>
 

@@ -5,7 +5,7 @@ import {getStore,setStore} from '@/utils'
 
 const state = {
     sidebar : {
-        open : Number(getStore('sideStatus')) || true //左边展开/收起 default:展开
+        open : !!Number(getStore('sideStatus')) || true //左边展开/收起 default:展开
     }
 }
 const mutations = {

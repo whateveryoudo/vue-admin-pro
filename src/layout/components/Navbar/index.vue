@@ -5,9 +5,8 @@
         </div>
         <!--    :background-color="variables.navBarBg   active-text-color="#ffd04b"  text-color="#fff""-->
         <el-menu  :default-active="activeMenu"
-
                   router
-
+                  @select="changeMainNav"
                   mode="horizontal">
             <navbar-item
                     v-for="route in permission_routes"
@@ -34,6 +33,7 @@
         components : {
             NavbarItem
         },
+
         computed : {
             ...mapGetters([
                 'permission_routes',
@@ -51,13 +51,25 @@
                 return variables
             },
         },
+        created(){
+            this.changeMainNav(this.$route.matched[0].path);
+        },
         methods : {
-            ...mapMutations('app',[
-                'TOGGLE_SIDEBAR',
-            ]),
+            ...mapMutations({
+                toggle_sidebar : 'app/TOGGLE_SIDEBAR',
+                change_nav : 'permission/CHANGE_NAV'
+            }),
             toggleSideMenu(){
-                this.TOGGLE_SIDEBAR();
+                this.toggle_sidebar();
+            },
+            /**
+             * 修改主菜单
+             * @param
+             */
+            changeMainNav(indexPath){
+                this.change_nav(indexPath);
             }
+
         }
     }
 </script>

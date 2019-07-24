@@ -1,10 +1,10 @@
 <template>
-    <div>我是商品列表页面</div>
+    <div>我是用户列表页面</div>
 </template>
 
 <script>
     export default {
-        name: "GoodsList"
+        name: "UserList"
     }
 </script>
 
