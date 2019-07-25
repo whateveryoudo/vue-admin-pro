@@ -28,8 +28,25 @@ const mutations = {
         state.mainNavPath = path;
     }
 }
+//递归 过滤路由表
+export const filterAsyncRoutes = (routes,roles) => {
 
-const actions = {}
+}
+const actions = {
+    //路由过滤 admin拥有所有权限
+    generateRoutes({commit},roles){
+        return new Promise((resolve,reject) => {
+            let accessedRoutes;
+            if(roles.includes('admin')){
+                accessedRoutes = asyncRoutes;
+            }else{
+                accessedRoutes = filterAsyncRoutes(asyncRoutes,roles);
+            }
+            commit('SET_ROUTES',accessedRoutes);
+            resolve(accessedRoutes);
+        })
+    }
+}
 
 export default {
     namespaced : true,

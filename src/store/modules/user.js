@@ -1,21 +1,22 @@
-import { login} from '@/api/user'
+import { login,getInfo} from '@/api/user'
 import {getToken,setToken} from '@/utils'
 
 const state = {
     name : '',
     token : getToken(),//默认获取本地存储的
-    roles : []
+    info : {},//用户信息对象
 }
 const mutations  = {
     SET_TOKEN : (state,token) => {
         state.token = token;
     },
-    SET_ROLES: (state, roles) => {
-        state.roles = roles
+    //设置用户信息
+    SET_USETINFO: (state, info) => {
+        state.info = info;
     }
 }
 const actions = {
-      //async
+      //用户登录
       login({commit},userInfo){
         const {username,password} = userInfo;
         // return await login({username : username.trim(),password});
@@ -26,6 +27,18 @@ const actions = {
                 commit('SET_TOKEN',token);
                 setToken(token);
                 resolve(res);
+            }).catch(err => {
+                reject(err);
+            })
+        })
+    },
+    //获取用户信息
+    getUserInfo({commit,state}){
+        return new Promise((resolve,reject) => {
+            getInfo({token : state.token}).then(res => {
+                const {info} = res;//这里未存入本地了,每次请求都会重新获取用户信息
+                commit('SET_USETINFO',info);
+                resolve(res.info);
             }).catch(err => {
                 reject(err);
             })

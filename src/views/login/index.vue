@@ -20,7 +20,7 @@
             </el-form-item>
 
             <el-button :loading="loading" class="submit-btn" type="primary" @click="handleLogin">
-               登录
+               {{loading ? '登录中' : '登录'}}
             </el-button>
         </el-form>
     </div>

@@ -1,7 +1,7 @@
 import axios from  'axios'
 
 import { MessageBox, Message } from 'element-ui'
-
+import store from '@/store'
 const service = axios.create({
     baseURL : process.env.VUE_APP_BASE_API,//地址为 根据配置获取接口地址前缀+请求地址
     timeout : 5000
@@ -9,8 +9,10 @@ const service = axios.create({
 
 service.interceptors.request.use(
     config => {
-        //TODO 添加token请求
-
+        //添加token请求(这里自定义头部,用于后台接口登录处理)
+        if(store.getters.token){
+            config.headers['X-Token'] = store.getters.token;
+        }
         return config;
     },
     error => {
