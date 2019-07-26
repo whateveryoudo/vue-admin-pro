@@ -3,7 +3,7 @@
         <transition name="sidebarLogoFade">
             <!--收起显示-->
             <router-link v-if="collapse" key="collapse" to="/">
-                <img :src="logo" alt="" class="sidebar-logo">
+                <img :src="logo" alt="" class="sidebar-logo" style="margin-right:0">
             </router-link>
             <!--展开显示-->
             <router-link v-else  key="expand" to="/">
@@ -42,7 +42,6 @@
     }
     .logo-wrapper{
         box-sizing: border-box;
-        padding:0 15px;
         height:60px;
         line-height: 60px;
         background-color: #2b2f3a;

@@ -55,6 +55,10 @@
     .sidebar-container{
         .el-menu{
             border: none;//去除右边框
+            a{
+                display: inline-block;
+                width:100%;
+            }
         }
     }
 </style>

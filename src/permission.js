@@ -27,7 +27,7 @@ router.beforeEach(async(to,from,next) => {
                 next()
             }else{
                 //获取用户信息
-                const { info } = await store.dispatch('permission/getUserInfo');
+                const { info } = await store.dispatch('user/getUserInfo');
 
                 //根据角色信息获取路由（路由权限判断 这里为什么采用异步方式？？）
                 const accessRoutes = await store.dispatch('permission/generateRoutes',info.roles);

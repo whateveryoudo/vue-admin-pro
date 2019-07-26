@@ -36,9 +36,9 @@ const actions = {
     getUserInfo({commit,state}){
         return new Promise((resolve,reject) => {
             getInfo({token : state.token}).then(res => {
-                const {info} = res;//这里未存入本地了,每次请求都会重新获取用户信息
+                const {data : {info}} = res;//这里未存入本地了,每次请求都会重新获取用户信息
                 commit('SET_USETINFO',info);
-                resolve(res.info);
+                resolve(res.data);
             }).catch(err => {
                 reject(err);
             })
