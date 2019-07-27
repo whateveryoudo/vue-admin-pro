@@ -3,6 +3,8 @@
         <div class="side-menu-switch" @click="toggleSideMenu">
             <i :class="foldCls"></i>
         </div>
+<!--        面包屑-->
+        <Breadcrumb></Breadcrumb>
         <!--    :background-color="variables.navBarBg   active-text-color="#ffd04b"  text-color="#fff""-->
         <el-menu  :default-active="activeMenu"
                   router
@@ -22,6 +24,7 @@
 <script>
     import {mapGetters,mapMutations} from 'vuex'
     import NavbarItem from './NavbarItem.vue'
+    import Breadcrumb from '@/components/Breadcrumb'
     import variables from '@/styles/variables.scss'
     export default {
         name: 'Navbar',
@@ -31,7 +34,8 @@
             }
         },
         components : {
-            NavbarItem
+            NavbarItem,
+            Breadcrumb
         },
 
         computed : {

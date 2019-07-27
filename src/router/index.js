@@ -13,7 +13,10 @@ const main1ChildRouters = [
         path: 'dashboard',
         name: 'Dashboard',
         component: () => import('@/views/main1/dashboard/index'),
-        meta: { title: 'Dashboard', icon: 'dashboard'}
+        meta: {
+            title: 'Dashboard',
+            icon: 'dashboard',
+        }
     },
 ]
 

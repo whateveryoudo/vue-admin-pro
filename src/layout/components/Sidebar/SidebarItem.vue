@@ -6,6 +6,7 @@
                 <el-menu-item
                         :index="resolvePath(onlyOneMenu.path)"
                 >
+                    <svg-icon :iconClass="onlyOneMenu.meta.icon"></svg-icon>
                     {{onlyOneMenu.meta.title}}
                 </el-menu-item>
             </AppLink>

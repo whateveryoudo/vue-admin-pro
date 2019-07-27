@@ -48,7 +48,7 @@ export const filterAsyncRoutes = (routes,roles) => {
         }
 
     })
-
+    return res;
 }
 const actions = {
     //路由过滤 admin拥有所有权限
