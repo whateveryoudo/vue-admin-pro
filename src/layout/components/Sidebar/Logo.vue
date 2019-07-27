@@ -45,6 +45,7 @@
         height:60px;
         line-height: 60px;
         background-color: #2b2f3a;
+        text-align: center;
         &>a{
             display: inline-block;
             width: 100%;

@@ -1,5 +1,5 @@
-import { login,getInfo} from '@/api/user'
-import {getToken,setToken} from '@/utils'
+import { login,getInfo,logOut} from '@/api/user'
+import {getToken,setToken,removeToken} from '@/utils'
 
 const state = {
     name : '',
@@ -26,7 +26,7 @@ const actions = {
                 //将token保存 vuex & 本地
                 commit('SET_TOKEN',token);
                 setToken(token);
-                resolve(res);
+                resolve(res.data);
             }).catch(err => {
                 reject(err);
             })
@@ -39,6 +39,21 @@ const actions = {
                 const {data : {info}} = res;//这里未存入本地了,每次请求都会重新获取用户信息
                 commit('SET_USETINFO',info);
                 resolve(res.data);
+            }).catch(err => {
+                reject(err);
+            })
+        })
+    },
+    //退出登录
+    loginOut({commit,state}){
+        return new Promise((resolve,reject) => {
+            logOut({token : state.token}).then(res => {
+                //清除vuex 本地数据
+                commit('SET_TOKEN','');
+                commit('SET_USETINFO',{});
+                removeToken();
+                //TODO 重置路由
+                resolve();
             }).catch(err => {
                 reject(err);
             })

@@ -74,18 +74,16 @@
                         this.loading = true;
                         try {
                             const res = await this.login(this.formObj);
-                            if(res.code === 20000){//TODO跳转主界面
-                                this.loading = false;
-                                this.$router.push('/');
-                                const h = this.$createElement;//自定义node
-                                this.$message({
-                                    message: h('p', null, [
-                                        h('i', { style: 'color: rgb(64, 158, 255);marginRight:5px' }, 'ykx,'),
-                                        h('span', null, '欢迎回来 ')
-                                    ]),
-                                    type: 'success'
-                                });
-                            }
+                            this.loading = false;
+                            this.$router.push('/');
+//                            const h = this.$createElement;//自定义node(这里无法获取info, 而main.js里面无法使用this.$createElement)
+//                            this.$message({
+//                                message: h('p', null, [
+//                                    h('i', { style: 'color: rgb(64, 158, 255);marginRight:5px' }, `${res.name},`),
+//                                    h('span', null, '欢迎回来 ')
+//                                ]),
+//                                type: 'success'
+//                            });
 
                         }catch (err){
                             this.loading = false;

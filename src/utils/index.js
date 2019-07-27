@@ -24,6 +24,13 @@ export const getStore = (key) => {
 export const setStore = (key,value) => {
     return localStorage.setItem(key,value);
 }
+/**
+ * 移除localstorage
+ * @param {String} key - 键名
+ */
+export const removeStore = (key) => {
+    return localStorage.removeItem(key);
+}
 
 
 
@@ -42,3 +49,11 @@ export const getToken = () => {
 export const setToken = (token) => {
     return setStore(TOKENKEY,token);
 }
+
+/**
+ * 移除本地token
+ */
+export const removeToken = () => {
+    return removeStore(TOKENKEY);
+}
+

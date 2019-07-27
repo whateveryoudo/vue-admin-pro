@@ -6,14 +6,15 @@
                 <el-menu-item
                         :index="resolvePath(onlyOneMenu.path)"
                 >
-                    <svg-icon :iconClass="onlyOneMenu.meta.icon"></svg-icon>
+                    <svg-icon v-if="onlyOneMenu.meta.icon" :iconClass="onlyOneMenu.meta.icon"></svg-icon>
                     {{onlyOneMenu.meta.title}}
                 </el-menu-item>
             </AppLink>
         </template>
         <el-submenu :index="resolvePath(item.path)" v-else>
             <template slot="title">
-                <div v-if="item.meta">{{item.meta.title}}</div>
+                <svg-icon :iconClass="item.meta.icon"></svg-icon>
+                <span v-if="item.meta">{{item.meta.title}}</span>
             </template>
             <SidebarItem
                     v-for="child in item.children"

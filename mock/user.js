@@ -14,13 +14,13 @@ const users = {
         roles: ['admin'],
         introduction: 'I am a super administrator',
         avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-        name: 'Super Admin'
+        name: '管理员ykx'
     },
     'editor-token': {
         roles: ['editor'],
         introduction: 'I am an editor',
         avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-        name: 'Normal Editor'
+        name: '逗比潇洒'
     }
 }
 
@@ -61,6 +61,17 @@ exports.user = [
                 return {
                     code : 20000,
                     data : {info}
+                }
+            }
+        },
+        {
+            url : '/user/logOut',//这里不要写为login开头  会被第一个拦截
+            type : 'post',
+            response : config => {
+                //未添加清除操作
+                return {
+                    code: 20000,
+                    data: 'success'
                 }
             }
         }

@@ -26,18 +26,19 @@ const main2ChildRouters = [
         component: LayoutInner,
         redirect: '/main2/example/goodsList',
         meta: { title: '表格', icon: 'dashboard'},
+
         children: [
             {
                 path: 'goodsList',
                 component: () => import('@/views/main2/example/goodsList'),
                 name: 'GoodsList',
-                meta: { title: '商品列表', icon: 'dashboard'}
+                meta: { title: '商品列表'}
             },
             {
                 path: 'userList',
                 component: () => import('@/views/main2/example/userList'),
                 name: 'UserList',
-                meta: { title: '用户列表', icon: 'dashboard'}
+                meta: { title: '用户列表'}
             },
         ]
     },

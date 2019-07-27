@@ -18,12 +18,13 @@
             >
             </navbar-item>
         </el-menu>
-
+        <nav-right></nav-right>
     </div>
 </template>
 <script>
     import {mapGetters,mapMutations} from 'vuex'
     import NavbarItem from './NavbarItem.vue'
+    import NavRight from './NavRight.vue'
     import Breadcrumb from '@/components/Breadcrumb'
     import variables from '@/styles/variables.scss'
     export default {
@@ -35,7 +36,8 @@
         },
         components : {
             NavbarItem,
-            Breadcrumb
+            Breadcrumb,
+            NavRight
         },
 
         computed : {
@@ -93,21 +95,26 @@
 
 </style>
 <style lang="scss" scoped>
-    .side-menu-switch{
-        width:25px;
-        padding:0 15px;
-        display: inline-block;
+    .nav-wrapper{
         height:60px;
+        line-height: 60px;
+        .side-menu-switch{
+            width:25px;
+            padding:0 15px;
+            display: inline-block;
+            height:60px;
 
-        float: left;
-        cursor: pointer;
-        transition: background .3s;
-        &:hover{
-            background-color: rgba(0, 0, 0, 0.025);
-        }
-        i{
-            font-size: 25px;
-            line-height: 60px;//父级无效...
+            float: left;
+            cursor: pointer;
+            transition: background .3s;
+            &:hover{
+                background-color: rgba(0, 0, 0, 0.025);
+            }
+            i{
+                font-size: 25px;
+                line-height: 60px;//父级无效...
+            }
         }
     }
+
 </style>

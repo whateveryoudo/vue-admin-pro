@@ -4,8 +4,7 @@ import {asyncRoutes, constantRoutes} from '@/router'
 const state = {
     mainNavPath : '/main1',//一级选中路由路径(默认首页)
     routes : [],
-    addRoutes : [],
-    routeSetted : false
+    addRoutes : []
 }
 //判断是否含有权限（默认不含有meta.roles字段则能够显示）
 const hasPermission = (roles,route) => {
@@ -30,7 +29,7 @@ const mutations = {
     SET_ROUTES : (state,routes) => {
         state.addRoutes = routes;
         state.routes = constantRoutes.concat(routes);
-        state.routeSetted = true;
+
     },
     CHANGE_NAV : (state,path) => {
         state.mainNavPath = path;

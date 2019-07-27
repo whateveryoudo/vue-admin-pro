@@ -17,3 +17,11 @@ export function getInfo(token) {
         params: token
     })
 }
+
+export function logOut(token) {
+    return request({
+        url : '/user/logOut',
+        method : 'post',
+        params: token
+    })
+}
