@@ -5,7 +5,7 @@ Vue.use(Vuex)
 
 // https://webpack.js.org/guides/dependency-management/#requirecontext
 const modulesFiles = require.context('./modules', true, /\.js$/)
-console.log(modulesFiles);
+// console.log(modulesFiles);
 
 //讲modules下的文件按照文件名作为module名转为 {xx1 : {state,action} }
 const modules = modulesFiles.keys().reduce((modules,modulePath) => {

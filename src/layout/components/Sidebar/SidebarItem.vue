@@ -49,7 +49,7 @@
 
             showOneChildMenu () {
                 let children = this.item.children || [];
-                console.log(children.some(item => !item.hidden));
+                // console.log(children.some(item => !item.hidden));
                 return !children.some(item => !item.hidden);
             },
             onlyOneMenu(){
