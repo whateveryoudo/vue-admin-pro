@@ -1,32 +1,47 @@
 <template>
     <div class="tab-menu-container">
-        <el-tabs v-model="activeTab" type="card"  closable @tab-remove="removeTab">
+        <el-tabs :value="activeTab" type="card"  closable @tab-remove="removeTab">
             <el-tab-pane
                     v-for="(item, index) in tabs"
                     :key="item.path"
-                    :label="item.title"
                     :name="item.name"
             >
+                  <span slot="label" style="padding: 8px">
+                      <svg-icon v-if="item.icon" :iconClass="item.icon"></svg-icon>
+                     {{item.title}}
+                  </span>
             </el-tab-pane>
         </el-tabs>
     </div>
 </template>
 
 <script>
+    import {mapState,mapGetters,mapMutations} from 'vuex'
     export default {
         name: "index",
         data(){
-            return {
-                activeTab : '2',
-                tabs : [
-                    {title : '菜单1',path : '/',name : '1'},
-                    {title : '菜单2',path : '/main1',name : '2'}
-                ]
-            }
+            return {}
+        },
+        computed : {
+            ...mapState('tabMenus',['tabs']),
+            ...mapGetters('tabMenus',['activeTab'])
         },
         methods : {
-            removeTab(){
-
+            ...mapMutations('tabMenus',['ADD_TAB','REMOVE_TAB']),
+            /**
+             * 删除tab
+             * @param  currentTabIndex {String} 当前菜单索引值
+             */
+            removeTab(currentTabIndex){
+                this.REMOVE_TAB(currentTabIndex);
+            }
+        },
+        watch : {
+            //监听路由改变
+            $route(){
+                if(this.$route.name){
+                    this.ADD_TAB(this.$route);//添加/更新tabs对象
+                }
             }
         }
     }
@@ -37,6 +52,7 @@
             float:left;//这里display : inline-block 与  每一项得overflow:hidden 会多出5px??
             display: block;
             width:150px;
+            padding:0 !important;
              text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
@@ -66,5 +82,8 @@
     .tab-menu-container{
         height:40px;
         padding:10px 0;
+        .svg-icon{
+            margin-right: 2px;
+        }
     }
 </style>
