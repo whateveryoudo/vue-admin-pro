@@ -3,7 +3,7 @@
         <el-tabs :value="activeTab" type="card"  closable @tab-remove="removeTab">
             <el-tab-pane
                     v-for="(item, index) in tabs"
-                    :key="item.path"
+                    :key="index"
                     :name="item.name"
             >
                   <span slot="label" style="padding: 8px">
