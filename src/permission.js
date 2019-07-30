@@ -30,7 +30,7 @@ router.beforeEach(async(to,from,next) => {
                 if(from.path === '/login'){
                     Message({
                         dangerouslyUseHTMLString: true,
-                        message: '<div><span style="color: rgb(64, 158, 255);margin-right:5px">'+info.name+'</span>,欢迎回来</div>',
+                        message: '<div><span style="color: rgb(64, 158, 255);margin-right:5px">'+info.name+'</span>,欢迎回来了啊</div>',
                         type: 'success'
                     });
                 }
