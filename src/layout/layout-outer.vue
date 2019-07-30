@@ -52,6 +52,9 @@
 
 <style lang="scss" scoped>
     @import "../styles/variables.scss";
+    .global-header{
+        position: relative;
+    }
     .basicLayout{
         /*左边菜单组件*/
         .sidebar-container{

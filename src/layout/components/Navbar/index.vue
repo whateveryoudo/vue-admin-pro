@@ -79,7 +79,7 @@
 </script>
 <style lang="scss">
     .nav-wrapper{
-        box-shadow: 2px 2px 8px #f0f1f2;//水平向右边偏移
+        box-shadow: 2px 2px 5px #f0f1f2;//水平向右边偏移
         position: relative;
         .el-menu{
             padding-left: 300px;
