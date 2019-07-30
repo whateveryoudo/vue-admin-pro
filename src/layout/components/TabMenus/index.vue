@@ -1,5 +1,5 @@
 <template>
-    <div class="tab-menu-container">
+    <div class="tab-menu-container" v-if="tabs.length > 0">
         <el-tabs :value="activeTab" type="card"  closable @tab-remove="removeTab">
             <el-tab-pane
                     v-for="(item, index) in tabs"

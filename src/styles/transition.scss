@@ -1,0 +1,15 @@
+//统一过度css
+
+
+//界面切换
+.fade-page-enter-avtive,.fade-page-leave-active{
+  transition: all .3s;
+}
+.fade-page-enter{
+  opacity: 0;
+  transform: translateX(-30px);
+}
+.fade-page-leave-to{
+  opacity: 0;
+  transform: translateX(30px);
+}
