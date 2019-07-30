@@ -5,6 +5,7 @@
             <div class="global-header">
                 <Navbar></Navbar>
                 <TabMenus></TabMenus>
+                <HeaderWrapper></HeaderWrapper>
                 <app-main></app-main>
             </div>
             <div class="right-content">
@@ -17,7 +18,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
-    import {AppMain,Navbar,Sidebar,TabMenus} from './components'
+    import {AppMain,Navbar,Sidebar,TabMenus,HeaderWrapper} from './components'
     export default {
         name: "index",
         data(){
@@ -43,7 +44,8 @@
             AppMain,
             Navbar,
             Sidebar,
-            TabMenus
+            TabMenus,
+            HeaderWrapper
         }
     }
 </script>
