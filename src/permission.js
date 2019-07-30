@@ -12,6 +12,9 @@ router.beforeEach(async(to,from,next) => {
     //test
     NProgress.start();
     //TODO 设置title
+    //测试冲突
+    saySomething();
+
 
     const hasToken = getToken();
     if(hasToken){
@@ -55,6 +58,9 @@ router.beforeEach(async(to,from,next) => {
     }
 })
 
+function saySomething(){
+    console.log('xxg真是个都比')
+}
 
 router.afterEach(() => {
     // finish progress bar
