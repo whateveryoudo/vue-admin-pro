@@ -63,9 +63,10 @@
 
 <style scoped>
     .breadcrumb-container{
-        float: left;
-        height:60px;
-        line-height: 60px;
+       /* float: left;*/
+        height:20px;
+        line-height: 20px;
         margin-left: 10px;
+        margin-bottom: 10px;
     }
 </style>

@@ -5,9 +5,11 @@
             <div class="global-header">
                 <Navbar></Navbar>
                 <TabMenus></TabMenus>
+                <Breadcrumb></Breadcrumb>
                 <app-main></app-main>
             </div>
             <div class="right-content">
+                
                 我是右侧内容
             </div>
         </div>
@@ -18,6 +20,7 @@
 <script>
     import {mapGetters} from 'vuex'
     import {AppMain,Navbar,Sidebar,TabMenus} from './components'
+    import Breadcrumb from '@/components/Breadcrumb'
     export default {
         name: "index",
         data(){
@@ -43,7 +46,8 @@
             AppMain,
             Navbar,
             Sidebar,
-            TabMenus
+            TabMenus,
+            Breadcrumb
         }
     }
 </script>

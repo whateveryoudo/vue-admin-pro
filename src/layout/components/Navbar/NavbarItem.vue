@@ -33,6 +33,13 @@
 </script>
 <style lang="scss">
     .nav-wrapper .el-menu{
-        padding-left: 200px;
+        padding-left: 100px;
+    }
+    .el-menu-item{
+      padding-left: 200px;
+      width: 130px;
+      background-color:white;
+      text-align:center;
+      height: 55px;
     }
 </style>

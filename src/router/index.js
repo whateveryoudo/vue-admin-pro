@@ -42,6 +42,23 @@ const main2ChildRouters = [
             },
         ]
     },
+    {
+        path: 'Commodity',
+        component: LayoutInner,
+        redirect: '/main2/Commodity/categorieslist',
+        meta: { title: '商品', icon: 'dashboard'},
+
+        children: [
+            {
+                path: 'categorieslist',
+                component: () => import('@/views/main2/Commodity/categorieslist'),
+                name: 'Categorieslist',
+                meta: { title: '商品分类'}
+            },
+            
+        ]
+    },
+    
 ]
 
 //不需要判断动态判断权限的路由（一些通用页面）

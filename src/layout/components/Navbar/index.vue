@@ -3,9 +3,6 @@
         <div class="side-menu-switch" @click="toggleSideMenu">
             <i :class="foldCls"></i>
         </div>
-<!--        面包屑-->
-        <Breadcrumb></Breadcrumb>
-        <!--    :background-color="variables.navBarBg   active-text-color="#ffd04b"  text-color="#fff""-->
         <el-menu  :default-active="activeMenu"
                   router
                   @select="changeMainNav"
@@ -84,7 +81,7 @@
         box-shadow: 2px 2px 8px #f0f1f2;//水平向右边偏移
         position: relative;
         .el-menu{
-            padding-left: 300px;
+            padding-left: 20px;
             float: left;
         }
 

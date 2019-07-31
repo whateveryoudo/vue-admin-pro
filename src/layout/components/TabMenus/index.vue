@@ -51,13 +51,15 @@
         .el-tabs__item{
             float:left;//这里display : inline-block 与  每一项得overflow:hidden 会多出5px??
             display: block;
-            width:150px;
+            width:120px;
             padding:0 !important;
              text-overflow: ellipsis;
             overflow: hidden;
             white-space: nowrap;
             position: relative;
+            height:30px;
             background-color: #fafafa;
+           
             &:hover{
                 background-color: transparent;
 
@@ -68,7 +70,7 @@
         }
         .el-tabs--card>.el-tabs__header .el-tabs__item .el-icon-close{
             position: absolute;
-            top:50%;
+            top:60%;
             transform: translateY(-50%);
             right:10px;
         }
@@ -80,7 +82,7 @@
 </style>
 <style lang="scss" scoped>
     .tab-menu-container{
-        height:40px;
+        height:30px;
         padding:10px 0;
         .svg-icon{
             margin-right: 2px;
