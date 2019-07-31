@@ -1,5 +1,22 @@
 @import './element-ui.scss';
+@import './transition.scss';
 
+html {
+  height: 100%;
+  box-sizing: border-box;
+  color:#333;
+}
+body{
+  height: 100%;
+}
+ul,li{
+  list-style: none;
+
+}
+ul{
+  margin: 0;
+  padding:0;
+}
 
 a,
 a:focus,

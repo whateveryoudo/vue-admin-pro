@@ -22,7 +22,7 @@
     import {mapGetters,mapMutations} from 'vuex'
     import NavbarItem from './NavbarItem.vue'
     import NavRight from './NavRight.vue'
-    import Breadcrumb from '@/components/Breadcrumb'
+
     import variables from '@/styles/variables.scss'
     export default {
         name: 'Navbar',
@@ -33,7 +33,6 @@
         },
         components : {
             NavbarItem,
-            Breadcrumb,
             NavRight
         },
 
@@ -78,7 +77,7 @@
 </script>
 <style lang="scss">
     .nav-wrapper{
-        box-shadow: 2px 2px 8px #f0f1f2;//水平向右边偏移
+        box-shadow: 2px 2px 5px #f0f1f2;//水平向右边偏移
         position: relative;
         .el-menu{
             padding-left: 20px;

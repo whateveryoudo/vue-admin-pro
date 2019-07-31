@@ -5,6 +5,7 @@ import {getStore,setStore} from '@/utils'
 
 const state = {
     tabs : getStore('userTabs') || [],  //存入标签对象
+
     activeIndex : 0
     // tabs : [
     //     {title : '菜单1',path : '/',name : '1',icon : 'dashboard'},
@@ -12,7 +13,8 @@ const state = {
     // ]  //存入标签对象
 }
 const getters = {
-    activeTab : state => state.activeIndex + 1 + ''  //element tabs 得name作为对应 name 为 索引值+1
+    activeTab : state => state.activeIndex + 1 + '',  //element tabs 得name作为对应 name 为 索引值+1
+    cachedTabs : state => state.tabs.filter(tab => !tab.meta || !tab.meta.noCache) || [],//用于缓存组件,keepalive
 }
 const mutations = {
     ADD_TAB(state,route){
@@ -37,12 +39,11 @@ const mutations = {
                 ...item,
                 name : index + 1 + ''
             }
-        })
+        });
         state.tabs = sortedTabs;
     },
 
     REMOVE_TAB(state,value){
-        debugger;
         const {tabs} = state;
         const tempTabs = [...tabs];
         const index = Number(value) - 1;
