@@ -8,10 +8,6 @@
                 <HeaderWrapper></HeaderWrapper>
                 <app-main></app-main>
             </div>
-            <div class="right-content">
-                
-                我是右侧内容
-            </div>
         </div>
     </div>
 

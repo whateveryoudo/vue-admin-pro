@@ -18,6 +18,21 @@ const main1ChildRouters = [
             icon: 'dashboard',
         }
     },
+    {
+        path: 'tabulation',
+        component: LayoutInner,
+        redirect: '/main1/tabulation/basic-list',
+        meta: { title: '列表页面', icon: 'dashboard'},
+
+        children: [
+            {
+                path: 'basic-list',
+                component: () => import('@/views/main1/tabulation/basic-list'),
+                name: 'basic-list',
+                meta: { title: '基础列表'}
+            },
+        ]
+    },
 ]
 
 const main2ChildRouters = [
