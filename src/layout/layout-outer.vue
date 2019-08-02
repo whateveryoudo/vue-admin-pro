@@ -1,6 +1,6 @@
 <template>
     <div class="basicLayout" :class="changeCls">
-        <Sidebar class="sidebar-container"></Sidebar>
+        <Sidebar></Sidebar>
         <div class="main-content">
             <div class="global-header">
                 <Navbar></Navbar>
@@ -8,9 +8,7 @@
                 <HeaderWrapper></HeaderWrapper>
                 <app-main></app-main>
             </div>
-            <div class="right-content">
-                我是右侧内容
-            </div>
+            <SettingDrawer></SettingDrawer>
         </div>
     </div>
 
@@ -18,7 +16,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
-    import {AppMain,Navbar,Sidebar,TabMenus,HeaderWrapper} from './components'
+    import {AppMain,Navbar,Sidebar,TabMenus,HeaderWrapper,SettingDrawer} from './components'
     export default {
         name: "index",
         data(){
@@ -45,11 +43,27 @@
             Navbar,
             Sidebar,
             TabMenus,
-            HeaderWrapper
+            HeaderWrapper,
+            SettingDrawer
         }
     }
 </script>
 
+<style lang="scss">
+    /*收起隐藏*/
+    .basicLayout.hideSidebar{
+        .sidebar-container{
+            .el-menu--collapse{
+                width:54px;
+            }
+            .el-submenu .el-submenu__title{
+                &>span,&>i{
+                    display: none;
+                }
+            }
+        }
+    }
+</style>
 <style lang="scss" scoped>
     @import "../styles/variables.scss";
     .global-header{
@@ -75,6 +89,11 @@
             }
             .main-content{
                 margin-left: 54px;
+            }
+            .el-submenu .el-submenu__title{
+                &>span,&>i{
+                    display: none;
+                }
             }
         }
     }

@@ -1,19 +1,18 @@
 // 标签module
 import {getStore,setStore} from '@/utils'
 
-
-
+console.log(getStore('activeIndex'));
 const state = {
-    tabs : getStore('userTabs') || [],  //存入标签对象
+    tabs : JSON.parse(getStore('userTabs')) || [],  //存入标签对象
     cachedTabs : [],//缓存组件（注意这里未写到getter中,当刷新router 需要从 keepalive 的include中移除 不能依赖tabs计算）
-    activeIndex : 0
+    activeIndex : getStore('activeIndex') || 0
     // tabs : [
     //     {title : '菜单1',path : '/',name : '1',icon : 'dashboard'},
     //     {title : '菜单2',path : '/main1',name : '2',icon : 'dashboard'}
     // ]  //存入标签对象
 }
 const getters = {
-    activeTab : state => state.activeIndex + 1 + ''  //element tabs 得name作为对应 name 为 索引值+1
+    activeTab : state => Number(state.activeIndex) + 1 + ''  //element tabs 得name作为对应 name 为 索引值+1
 }
 
 /**
@@ -29,12 +28,17 @@ const commonUpdateTabs = (state,prevTabs) => {
             tabName : index + 1 + ''
         }
     });
+    //将用户tabs/activeIndex存入本地
+    setStore('userTabs',JSON.stringify(sortedTabs));
+    setStore('activeIndex',state.activeIndex);
     state.tabs = sortedTabs;
     state.cachedTabs = sortedTabs.filter(tab => !tab.meta || !tab.meta.noCache);
 }
 const mutations = {
     INIT_TABS(state,affixTabs){
-        state.tabs = affixTabs;
+        if(!state.tabs || state.tabs.length === 0){//本地存储有则走本地存储
+            state.tabs = affixTabs;
+        }
     },
     ADD_TAB(state,route){
         let tempTabs = [...state.tabs];

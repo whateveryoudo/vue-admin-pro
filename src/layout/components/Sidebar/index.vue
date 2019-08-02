@@ -2,12 +2,13 @@
     <div class="sidebar-container" >
         <Logo :collapse="!open"/>
         <!--   左边菜单列表     -->
-        <el-scrollbar>
+        <el-scrollbar wrap-class="scrollbar-wrapper">
             <el-menu
                     :default-active="activeMenu"
                     :background-color="variables.menuBg"
                     :text-color="variables.menuText"
                     :active-text-color="variables.menuActiveColor"
+                    :collapse-transition="false"
                     :collapse="!open"
             >
                 <!-- 注意：这里采用二级路由遍历,故在根路由添加当前navpath-->
@@ -66,5 +67,8 @@
     .sidebar-container{
         transition: width 0.28s;
         width:210px;
+    }
+    .scrollbar-wrapper{
+        overflow-x: hidden !important;
     }
 </style>
