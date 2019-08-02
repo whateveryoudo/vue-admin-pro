@@ -12,7 +12,7 @@
           <el-col :span="6" :offset="2"> 3个</el-col>
           <el-col :span="6" :offset="2">10小时</el-col>
         </el-row>
-        </div>
+    </div>
     </div>
 </template>
 

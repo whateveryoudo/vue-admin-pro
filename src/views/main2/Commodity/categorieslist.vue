@@ -18,7 +18,7 @@
 					<!-- 编辑状态 -->
 					<template v-if="node.isEdit">
 						<el-input v-model="data.name" 
-							autofocus
+							autoafocus
 							size="mini"
 							:ref="'slotTreeInput'+data[NODE_KEY]"
 							@blur.stop="handleInput(node, data)"
