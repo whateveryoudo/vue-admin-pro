@@ -2,7 +2,11 @@
     <transition name="fade">
         <div class="context-menu-wrapper" :style="{left : position.left + 'px',top : position.top + 'px'}" v-show="visible">
             <ul>
-                <li class="menu-item " :class="{divider : item.key === 'divider'}" v-for="item in menuData" :key="item.key">
+            <!--点击不要冒泡-->
+                <li class="menu-item"
+                    :class="{' divider' : item.key === 'divider',' disabled' : item.disabled}"
+                    @click.stop="clickMenuItem(item.key,item.disabled)"
+                    v-for="item in menuData" :key="item.key">
                     <i class="menu-icon" :class="item.iconCls"></i>{{item.text}}
                 </li>
 
@@ -13,6 +17,15 @@
 </template>
 
 <script>
+    let defaultMenuData = [
+        {key : 'refresh', text : '刷新',iconCls : 'el-icon-refresh'},
+        {key : 'divider'},
+        {key : 'close', text : '关闭',iconCls : 'el-icon-close'},
+        {key : 'close-other', text : '关闭其他',iconCls : 'el-icon-circle-close'},
+        {key : 'close-all', text : '关闭所有',iconCls : 'el-icon-error'},
+        {key : 'close-l', text : '关闭左侧',iconCls : 'el-icon-d-arrow-left'},
+        {key : 'close-r', text : '关闭右侧',iconCls : 'el-icon-d-arrow-right'},
+        ];
     export default {
         name: "ContextMenu",
         props : {
@@ -24,19 +37,57 @@
                 type : Object,
                 defaultValue : {left : 0,top : 0}
             },
+            currentTab : {
+                type : Object,
+                defaultValue : {}
+            },
+            tabs : {
+                type : Array,
+                defaultValue : []
+            },
             clickMenu: Function
         },
         data(){
-            return {
-                menuData : [
-                    {key : 'refresh', text : '刷新',iconCls : 'el-icon-refresh'},
-                    {key : 'divider'},
-                    {key : 'close', text : '关闭',iconCls : 'el-icon-close'},
-                    {key : 'close-other', text : '关闭其他',iconCls : 'el-icon-circle-close'},
-                    {key : 'close-all', text : '关闭所有',iconCls : 'el-icon-error'},
-                    {key : 'close-l', text : '关闭左侧',iconCls : 'el-icon-d-arrow-left'},
-                    {key : 'close-r', text : '关闭右侧',iconCls : 'el-icon-d-arrow-right'},
-                ]
+            return {}
+        },
+        computed : {
+            menuData(){
+                if(Object.keys(this.currentTab).length === 0){
+                    return [];
+                }
+                //先重置disabled
+                let tranformMenuData = [...defaultMenuData].map(item => ({...item,disabled : false}));
+
+                let disabledIndexs = [];
+                const {meta,tabName : curTableName} = this.currentTab;
+                if(this.tabs.length <= 1){
+                    disabledIndexs = [2,3,4,5,6];
+                }else if(this.tabs.length > 1){
+                    if(meta && meta.affix){
+                        disabledIndexs = [...disabledIndexs,2]
+                    }
+                    if(Number(curTableName) === 1){
+                        disabledIndexs = [...disabledIndexs,5];
+                    }
+                    if(Number(curTableName) === this.tabs.length){
+                        disabledIndexs = [...disabledIndexs,6];
+                    }
+                }
+
+                //批量处理可否操作
+                disabledIndexs.forEach(index => {
+                    tranformMenuData[index].disabled = true;
+                })
+
+                return tranformMenuData;
+            }
+
+        },
+        methods : {
+            clickMenuItem(key,disabled){
+                if(!disabled){
+                    this.$emit('clickMenu',key);
+                }
             }
         }
     }
@@ -72,7 +123,14 @@
             &:hover{
                 color:rgb(64, 158, 255);
             }
+            &.disabled{
+                color: rgba(0,0,0,.25)!important;
+                cursor: not-allowed;
+                background: none;
+                border-color: transparent!important;
+            }
         }
+
         .menu-item.divider{
             height: 1px;
             margin: 1px 0;
