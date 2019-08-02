@@ -15,6 +15,23 @@ const state = {
 const getters = {
     activeTab : state => state.activeIndex + 1 + ''  //element tabs 得name作为对应 name 为 索引值+1
 }
+
+/**
+ *  统一更新state  tabs内容
+ * @param  {Object}  state 状态集
+ * @param  {Array}  prevTabs 转换前tabs
+ */
+const commonUpdateTabs = (state,prevTabs) => {
+    //重新更新name序列
+    const sortedTabs = prevTabs.map((item,index) => {
+        return {
+            ...item,
+            tabName : index + 1 + ''
+        }
+    });
+    state.tabs = sortedTabs;
+    state.cachedTabs = sortedTabs.filter(tab => !tab.meta || !tab.meta.noCache);
+}
 const mutations = {
     INIT_TABS(state,affixTabs){
         state.tabs = affixTabs;
@@ -35,15 +52,7 @@ const mutations = {
             state.activeIndex = tempTabs.length === 0 ? 0 :  tempTabs.length;
             tempTabs.push(addTabObj)
         }
-        //重新更新name序列
-        const sortedTabs = tempTabs.map((item,index) => {
-            return {
-                ...item,
-                tabName : index + 1 + ''
-            }
-        });
-        state.tabs = sortedTabs;
-        state.cachedTabs = sortedTabs.filter(tab => !tab.meta || !tab.meta.noCache);
+        commonUpdateTabs(state,tempTabs);
     },
 
     CLOSE_TAB(state,value){
@@ -61,16 +70,8 @@ const mutations = {
             }
         }
         tempTabs.splice(index,1);
-        //重新更新name序列
-        const sortedTabs = tempTabs.map((item,index) => {
-            return {
-                ...item,
-                tabName : index + 1 + ''
-            }
-        })
         state.activeIndex = nextActiveIndex;
-        state.tabs = sortedTabs;
-        state.cachedTabs = sortedTabs.filter(tab => !tab.meta || !tab.meta.noCache);
+        commonUpdateTabs(state,tempTabs);
     },
 
     CLOSE_CACHED_TAB(state,value){
@@ -82,10 +83,10 @@ const mutations = {
         let resultTabs = [];
         resultTabs = [...state.tabs].filter(tab => {
             const {meta,tabName} = tab;
-            return tabName !== value || (meta && meta.affix)
+            return tabName === value || (meta && meta.affix)
         })
-        state.tabs = resultTabs;
-        state.cachedTabs = resultTabs.filter(tab => !tab.meta || !tab.meta.noCache);
+        state.activeIndex = resultTabs.length - 1;
+        commonUpdateTabs(state,resultTabs);
     },
     CLOSE_ALL_TABS(state){
         let resultTabs = [];
@@ -94,30 +95,32 @@ const mutations = {
             return meta && meta.affix
         })
         state.activeIndex = 0;
-        state.tabs = resultTabs;
-        state.cachedTabs = resultTabs.filter(tab => !tab.meta || !tab.meta.noCache);
+        commonUpdateTabs(state,resultTabs);
     },
+    // 按照当前选择分割 left right 部分   关闭左侧-  左侧部分（仅显示affix和自身） + 右侧部分   关闭右侧 - 反之即可
     CLOSE_LEFT_TABS(state,value){
         let tempTabs = [...state.tabs];
-        let resultTabs = tempTabs.slice(0,Number(value));
-        resultTabs = resultTabs.filter(tab => {
+        let leftTabs = tempTabs.slice(0,Number(value) - 1);
+        let rightTabs = tempTabs.slice(Number(value) - 1);
+        let resultTabs =  leftTabs.filter(tab => {
             const {meta} = tab;
-            return meta && meta.affix
-        })
-        state.activeIndex = Number(value) - 1;
-        state.tabs = resultTabs;
-        state.cachedTabs = resultTabs.filter(tab => !tab.meta || !tab.meta.noCache);
+            return  meta && meta.affix
+        }) .concat(rightTabs);
+        state.activeIndex = resultTabs.length - 1;
+        commonUpdateTabs(state,resultTabs);
     },
     CLOSE_RIGHT_TABS(state,value){
         let tempTabs = [...state.tabs];
+        let leftTabs = tempTabs.slice(0,Number(value));
         let rightTabs = tempTabs.slice(Number(value));
-        let resultTabs = tempTabs.filter(tab => {
-            const {meta} = tab;
-            return meta && meta.affix
-        }).concat(rightTabs);
+        let resultTabs = leftTabs.concat(
+            rightTabs.filter(tab => {
+                const {meta} = tab;
+                return  meta && meta.affix
+            })
+        )
         state.activeIndex = Number(value) - 1;
-        state.tabs = resultTabs;
-        state.cachedTabs = resultTabs.filter(tab => !tab.meta || !tab.meta.noCache);
+        commonUpdateTabs(state,resultTabs);
     }
 }
 export default {

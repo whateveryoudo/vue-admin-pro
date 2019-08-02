@@ -39,7 +39,7 @@ const main2ChildRouters = [
                 path: 'userList',
                 component: () => import('@/views/main2/example/userList'),
                 name: 'UserList',
-                meta: { title: '用户列表',affix:true}
+                meta: { title: '用户列表'}
             },
         ]
     },

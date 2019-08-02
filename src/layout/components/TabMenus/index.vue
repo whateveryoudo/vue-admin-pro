@@ -113,6 +113,8 @@
             //删除tab
             closeTab(currentTabIndex){
                 this.CLOSE_TAB(currentTabIndex);
+                //跳转当前选中界面
+                this.moveToCurrentPage();
             },
             //右键打开更多操作菜单
             openMoreMenu(tab,e){
@@ -138,6 +140,7 @@
             //点击子组件列表项
             handleClickMenu(key){
                 //先关闭框
+                this.closeContextMenu();
                 switch (key){
                     case 'refresh':
                         this.refresh();
@@ -172,19 +175,35 @@
             },
             //关闭其他tabs
             closeOther(){
-                this.CLOSE_OTHER_TABS(this.operateTab.tabName)
+                this.CLOSE_OTHER_TABS(this.operateTab.tabName);
+                //跳转当前选中界面
+                this.moveToCurrentPage();
             },
             //关闭所有
             closeAll(){
                 this.CLOSE_ALL_TABS();
+                //跳转当前选中界面
+                this.moveToCurrentPage();
             },
             //关闭当前左侧
             closeLeft(){
                 this.CLOSE_LEFT_TABS(this.operateTab.tabName)
+                //跳转当前选中界面
+                this.moveToCurrentPage();
             },
             //关闭当前右侧
             closeRight(){
                 this.CLOSE_RIGHT_TABS(this.operateTab.tabName)
+                //跳转当前选中界面
+                this.moveToCurrentPage();
+            },
+            moveToCurrentPage(){
+                const targetTab = this.tabs.find(tab => tab.tabName === this.activeTab);
+                if(!targetTab){throw new Error('无tab选中...')};
+
+                this.$router.push({
+                    path: targetTab.path
+                })
             },
         },
         watch : {

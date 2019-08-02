@@ -2,9 +2,10 @@
     <transition name="fade">
         <div class="context-menu-wrapper" :style="{left : position.left + 'px',top : position.top + 'px'}" v-show="visible">
             <ul>
+            <!--点击不要冒泡-->
                 <li class="menu-item"
                     :class="{' divider' : item.key === 'divider',' disabled' : item.disabled}"
-                    @click="clickMenuItem(item.key,item.disabled)"
+                    @click.stop="clickMenuItem(item.key,item.disabled)"
                     v-for="item in menuData" :key="item.key">
                     <i class="menu-icon" :class="item.iconCls"></i>{{item.text}}
                 </li>
