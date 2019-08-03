@@ -7,24 +7,28 @@
             <i class="el-icon-close" v-show="visible"></i>
         </div>
         <el-drawer
-                title="界面全局配置"
                 :size="drawerWidth"
                 :visible.sync="visible"
                 :direction="direction">
-            <span>我来啦!</span>
+            <h3 slot="title">界面全局配置</h3>
+            <DrawerContent/>
         </el-drawer>
     </div>
 </template>
 
 <script>
+    import DrawerContent from './DrawerContent.vue'
     export default {
         name: "SettingDrawer",
         data(){
             return {
                 drawerWidth : '300px', //注意这里传入 number无效
-                visible : false,
+                visible : true,
                 direction : 'rtl'
             }
+        },
+        components : {
+            DrawerContent
         },
         methods : {
             toggleDrawer(){

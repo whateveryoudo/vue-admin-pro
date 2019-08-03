@@ -56,7 +56,7 @@
             .el-menu--collapse{
                 width:54px;
             }
-            .el-submenu .el-submenu__title{
+            .el-submenu,.el-menu-item,.el-submenu__title{
                 &>span,&>i{
                     display: none;
                 }
