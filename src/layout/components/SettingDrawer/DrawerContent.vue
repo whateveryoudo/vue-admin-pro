@@ -3,12 +3,20 @@
         <div class="setting-block">
             <h3>整体风格设置</h3>
             <ul class="block-list">
-                <li class="block-list-item">
-                    <img src="https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg" alt="">
-                </li>
-                <li class="block-list-item">
-                    <img src="https://gw.alipayobjects.com/zos/antfincdn/NQ%24zoisaD2/jpRkZQMyYRryryPNtyIC.svg" alt="">
-                </li>
+                <el-tooltip class="item" effect="dark" content="暗色菜单风格" placement="top">
+                    <li class="block-list-item" @click="changeStyle('dark')">
+                        <img src="https://gw.alipayobjects.com/zos/antfincdn/XwFOFbLkSM/LCkqqYNmvBEbokSDscrm.svg" alt="">
+                        <i class="el-icon-check check-icon" v-if="menuStyle === 'dark'"></i>
+                    </li>
+                </el-tooltip>
+
+                <el-tooltip class="item" effect="dark" content="亮色菜单风格" placement="top">
+                    <li class="block-list-item" @click="changeStyle('light')">
+                        <img src="https://gw.alipayobjects.com/zos/antfincdn/NQ%24zoisaD2/jpRkZQMyYRryryPNtyIC.svg" alt="">
+                        <i class="el-icon-check check-icon" v-if="menuStyle === 'light'"></i>
+                    </li>
+                </el-tooltip>
+
             </ul>
         </div>
         <el-divider></el-divider>
@@ -20,23 +28,23 @@
                 </li>
                 <li class="setting-list-item">
                     <span>固定左边菜单</span>
-                    <el-switch v-model="value1"></el-switch>
+                    <el-switch v-model="fixedSidebar"></el-switch>
                 </li>
                 <li class="setting-list-item">
                     <span>固定header</span>
-                    <el-switch v-model="value2"></el-switch>
+                    <el-switch v-model="fixedHeader"></el-switch>
                 </li>
                 <li class="setting-list-item">
                     <span>下滑时隐藏header</span>
-                    <el-switch v-model="value3"></el-switch>
+                    <el-switch v-model="hideHeaderScrolling"></el-switch>
                 </li>
                 <li class="setting-list-item">
                     <span>菜单项手风琴模式</span>
-                    <el-switch v-model="value4"></el-switch>
+                    <el-switch v-model="accordion"></el-switch>
                 </li>
                 <li class="setting-list-item">
                     <span>显示tabs导航</span>
-                    <el-switch v-model="value5"></el-switch>
+                    <el-switch v-model="hideTabs"></el-switch>
                 </li>
             </ul>
 
@@ -54,12 +62,77 @@
             ThemePicker
         },
         data(){
-            return {
-                value1 : false,
-                value2 : false,
-                value3 : false,
-                value4 : false,
-                value5 : false
+            return {}
+        },
+        computed : {
+            menuStyle(){
+                return this.$store.state.settings.menuStyle;
+            },
+
+            fixedSidebar : {
+                get(){
+                    return this.$store.state.settings.fixedSidebar;
+                },
+                set(val){
+                    this.$store.commit('settings/CHANGE_SETTING', {
+                        key: 'fixedSidebar',
+                        value: val
+                    })
+                }
+            },
+            fixedHeader : {
+                get(){
+                    return this.$store.state.settings.fixedHeader;
+                },
+                set(val){
+                    this.$store.commit('settings/CHANGE_SETTING', {
+                        key: 'fixedHeader',
+                        value: val
+                    })
+                }
+            },
+            hideHeaderScrolling : {
+                get(){
+                    return this.$store.state.settings.hideHeaderScrolling;
+                },
+                set(val){
+                    this.$store.commit('settings/CHANGE_SETTING', {
+                        key: 'hideHeaderScrolling',
+                        value: val
+                    })
+                }
+            },
+            accordion : {
+                get(){
+                    return this.$store.state.settings.accordion;
+                },
+                set(val){
+                    this.$store.commit('settings/CHANGE_SETTING', {
+                        key: 'accordion',
+                        value: val
+                    })
+                }
+            },
+            hideTabs : {
+                get(){
+                    return this.$store.state.settings.hideTabs;
+                },
+                set(val){
+                    this.$store.commit('settings/CHANGE_SETTING', {
+                        key: 'hideTabs',
+                        value: val
+                    })
+                }
+            }
+        },
+        methods : {
+            //风格改变 val - light,dark
+            changeStyle(val){
+                debugger;
+                this.$store.commit('settings/CHANGE_SETTING', {
+                    key: 'menuStyle',
+                    value: val
+                })
             }
         }
     }
@@ -78,6 +151,15 @@
             display: flex;
             &>li.block-list-item{
                 margin-right: 16px;
+                position: relative;
+                cursor: pointer;
+                .check-icon{
+                    position: absolute;
+                    top: 17px;
+                    right: 8px;
+                    font-size: 18px;
+                    color:#409EFF;
+                }
             }
         }
         .setting-container{
@@ -88,5 +170,6 @@
                 justify-content: space-between;
             }
         }
+
     }
 </style>

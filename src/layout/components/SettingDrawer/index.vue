@@ -1,6 +1,7 @@
 <template>
     <div class="setting-drawer-wrapper" :style="{right : visible ? drawerWidth :0}">
         <div class="drawer-trigger"
+             :style="{'background-color' : theme}"
              @click="toggleDrawer"
              :title="visible ? '关闭设置' : '打开设置'">
             <i class="el-icon-s-tools" v-show="!visible"></i>
@@ -23,8 +24,13 @@
         data(){
             return {
                 drawerWidth : '300px', //注意这里传入 number无效
-                visible : true,
+                visible : false,
                 direction : 'rtl'
+            }
+        },
+        computed : {
+            theme() {
+                return this.$store.state.settings.theme
             }
         },
         components : {
@@ -37,7 +43,6 @@
         }
     }
 </script>
-
 <style lang="scss" scoped>
     .setting-drawer-wrapper{
         transition:right 225ms cubic-bezier(0,0,.2,1) 0s; //这里拷贝的drawer组件动画参数
@@ -51,7 +56,6 @@
             height: 48px;
             align-items: center;
             justify-content: center;
-            background: #1890ff;
             border-radius: 4px 0 0 4px;
             cursor: pointer;
             pointer-events: auto;

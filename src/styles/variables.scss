@@ -3,14 +3,35 @@
 
 $sideBarWidth : 210px;
 
-$menuBg:#304156;
-$navBarBg:#2b2f3a;
-$menuActiveColor : #409EFF;
-$menuText : #bfcbd9;
+
+//深色sidebar
+
+$dark-menu-bg:#304156;
+$dark-navbar-bg:#2b2f3a;
+$dark-menu-active-color : #409EFF;
+$dark-menu-text : #bfcbd9;
+
+//浅色sidebar
+
+$light-menu-bg:#fff;
+$light-navbar-bg:#2b2f3a;
+$light-menu-active-color : #409EFF;
+$light-menu-text : #303133;
 
 :export{
-  menuBg: $menuBg;
-  menuText : $menuText;
-  navBarBg : $navBarBg;
-  menuActiveColor : $menuActiveColor;
+  sideBarWidth : $sideBarWidth;
+
+
+
+  darkMenuBg: $dark-menu-bg;
+  darkMenuText : $dark-menu-text;
+  darkNavBarBg : $dark-navbar-bg;
+  darkMenuActiveColor : $dark-menu-active-color;
+
+
+  lightMenuBg: $light-menu-bg;
+  lightMenuText : $light-menu-text;
+  lightNavBarBg : $light-navbar-bg;
+  lightMenuActiveColor : $light-menu-active-color;
+
 }
