@@ -32,6 +32,7 @@
 </script>
 
 <style lang="scss" scoped>
+
     //查看过度文档
     .sidebarLogoFade-enter-active{
         transition: opacity 1.5s;
@@ -60,7 +61,7 @@
         }
         .sidebar-title{
             color:#fff;
-            font-size: 14px;
+            font-size: 16px;
             display: inline-block;
             margin: 0;
         }
