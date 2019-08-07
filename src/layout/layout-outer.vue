@@ -108,6 +108,7 @@
             background-color: $normalBg;
             transition: margin-left .28s;
             flex:1;
+            min-height: 100vh;
         }
         &.hideSidebar{
             .sidebar-container{
