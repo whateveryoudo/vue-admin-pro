@@ -7,7 +7,7 @@
                         :index="resolvePath(onlyOneMenu.path)"
                 >
                     <svg-icon v-if="onlyOneMenu.meta.icon" :iconClass="onlyOneMenu.meta.icon"></svg-icon>
-                    {{onlyOneMenu.meta.title}}
+                    <span>{{onlyOneMenu.meta.title}}</span>
                 </el-menu-item>
             </AppLink>
         </template>

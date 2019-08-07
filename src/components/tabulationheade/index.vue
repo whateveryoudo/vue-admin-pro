@@ -22,23 +22,25 @@
 
 <style lang="scss" scoped>
     .tabulation-header{
+
         height:70px;
         line-height: 35px;
-        margin:6px auto 6px auto;
         /*border-bottom:1px solid #F00;
         border-top:1px solid #F00;*/
-        background-color:#EEEEEE;
+        background-color:#fff;
         
         .elrow{
-            margin-top:10px;
             margin-left:30px;
         }
         .elrow1{
-            font-size:20px;
+            color: rgba(0,0,0,.85);
+            font-weight: 700;
+            font-size: 16px;
         }
         .elrow2{
-            font-size:6px;
             margin-left:32px;
+            font-size: 14px;
+            color: rgba(0,0,0,.65);
         }
     }
 </style>

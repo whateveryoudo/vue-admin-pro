@@ -1,22 +1,28 @@
 <template>
     <div class="basicLayout" :class="changeCls">
-        <Sidebar class="sidebar-container"></Sidebar>
-        <div class="main-content">
-            <div class="global-header">
+        <Sidebar :class="{' fixed' : fixedSidebar}"></Sidebar>
+        <div class="main-content" :style="{
+                    'margin-left' : fixedSidebar ? sideBarWidth : 0,
+                    'padding-top' : fixedHeader ? paddingTop : 0
+                    }">
+            <div class="global-header"
+                 :class="{fixed : fixedHeader}"
+                 :style="{ width:fixedHeader ? `calc(100% - ${sideBarWidth})` : '100%'}">
                 <Navbar></Navbar>
                 <TabMenus></TabMenus>
-                <HeaderWrapper></HeaderWrapper>
-                <app-main></app-main>
             </div>
+              <HeaderWrapper></HeaderWrapper>
+            <app-main></app-main>
+            <SettingDrawer></SettingDrawer>
         </div>
     </div>
 
 </template>
 
 <script>
-    import {mapGetters} from 'vuex'
-    import {AppMain,Navbar,Sidebar,TabMenus,HeaderWrapper} from './components'
-
+    import {mapGetters,mapState} from 'vuex'
+    import {AppMain,Navbar,Sidebar,TabMenus,HeaderWrapper,SettingDrawer} from './components'
+    import variables from '@/styles/variables.scss'
     export default {
         name: "index",
         data(){
@@ -28,6 +34,7 @@
 
         },
         computed : {
+            ...mapState('settings',['fixedSidebar','fixedHeader','hideTabs']),
             ...mapGetters([
                 'open'
             ]),
@@ -36,6 +43,12 @@
                 return {
                     hideSidebar : !this.open
                 }
+            },
+            sideBarWidth(){
+                return  this.open ?  variables.sideBarWidth : variables.colSideBarWidth;
+            },
+            paddingTop(){
+                return this.hideTabs ? '80px' : '108px';
             }
         },
         components : {
@@ -43,30 +56,58 @@
             Navbar,
             Sidebar,
             TabMenus,
-            HeaderWrapper
+            HeaderWrapper,
+            SettingDrawer
         }
     }
 </script>
 
+<style lang="scss">
+    /*收起隐藏*/
+    .basicLayout.hideSidebar{
+        .sidebar-container{
+            .el-menu--collapse{
+                width:54px;
+            }
+            .el-submenu,.el-menu-item,.el-submenu__title{
+                &>span,&>i{
+                    display: none;
+                }
+            }
+        }
+    }
+</style>
 <style lang="scss" scoped>
     @import "../styles/variables.scss";
     .global-header{
+        background-color: #fff;
+        transition: width .28s;
         position: relative;
+        &.fixed{
+            position: fixed;
+            top:0;
+            right:0;
+            z-index:200;
+        }
     }
     .basicLayout{
         /*左边菜单组件*/
+        display: flex;
         .sidebar-container{
-            background-color: $menuBg;
-            position: fixed;
-            top:0;
-            bottom:0;
-            left: 0;
-            height:100%;
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            &.fixed{
+                position: fixed;
+                top:0;
+                bottom:0;
+                left: 0;
+            }
         }
         .main-content{
-            transition: margin-left .28s;
-            margin-left: 210px;
             background-color: $normalBg;
+            transition: margin-left .28s;
+            flex:1;
         }
         &.hideSidebar{
             .sidebar-container{
@@ -74,6 +115,11 @@
             }
             .main-content{
                 margin-left: 54px;
+            }
+            .el-submenu .el-submenu__title{
+                &>span,&>i{
+                    display: none;
+                }
             }
         }
     }

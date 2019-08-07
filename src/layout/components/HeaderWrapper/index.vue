@@ -18,5 +18,8 @@
 <style lang="scss" scoped>
     .page-header-wrapper{
         overflow: hidden;
+        background-color: #fff;
+        padding:10px 0;
+        padding-left: 24px;
     }
 </style>
