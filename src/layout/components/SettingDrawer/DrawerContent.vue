@@ -51,7 +51,7 @@
                     <el-switch v-model="accordion"></el-switch>
                 </li>
                 <li class="setting-list-item">
-                    <span>显示tabs导航</span>
+                    <span>关闭tabs导航</span>
                     <el-switch v-model="hideTabs"></el-switch>
                 </li>
             </ul>

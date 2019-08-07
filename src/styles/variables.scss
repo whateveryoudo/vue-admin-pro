@@ -2,6 +2,7 @@
 
 
 $sideBarWidth : 210px;
+$colSideBarWidth : 54px;
 
 
 //深色sidebar
@@ -20,7 +21,7 @@ $light-menu-text : #303133;
 
 :export{
   sideBarWidth : $sideBarWidth;
-
+  colSideBarWidth : $colSideBarWidth;
 
 
   darkMenuBg: $dark-menu-bg;

@@ -2,10 +2,12 @@
     <div class="basicLayout" :class="changeCls">
         <Sidebar :class="{' fixed' : fixedSidebar}"></Sidebar>
         <div class="main-content" :style="{
-                    'padding-left' : fixedSidebar ? sideBarWidth : 0,
+                    'margin-left' : fixedSidebar ? sideBarWidth : 0,
                     'padding-top' : fixedHeader ? paddingTop : 0
                     }">
-            <div class="global-header" :class="{fixed : fixedHeader}" :style="{ width:fixedHeader ? `calc(100% - ${sideBarWidth})` : '100%'}">
+            <div class="global-header"
+                 :class="{fixed : fixedHeader}"
+                 :style="{ width:fixedHeader ? `calc(100% - ${sideBarWidth})` : '100%'}">
                 <Navbar></Navbar>
                 <TabMenus></TabMenus>
             </div>
@@ -43,7 +45,7 @@
                 }
             },
             sideBarWidth(){
-                return variables.sideBarWidth;
+                return  this.open ?  variables.sideBarWidth : variables.colSideBarWidth;
             },
             paddingTop(){
                 return this.hideTabs ? '80px' : '108px';
@@ -78,7 +80,7 @@
 <style lang="scss" scoped>
     @import "../styles/variables.scss";
     .global-header{
-
+        transition: width .28s;
         position: relative;
         &.fixed{
             position: fixed;
