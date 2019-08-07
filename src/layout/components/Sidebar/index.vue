@@ -11,6 +11,7 @@
                     :active-text-color="variables[`${menuStyle}MenuActiveColor`]"
                     :collapse-transition="false"
                     :collapse="!open"
+                    :unique-opened="accordion"
             >
                 <!-- 注意：这里采用二级路由遍历,故在根路由添加当前navpath-->
                 <SidebarItem
@@ -40,7 +41,7 @@
         components : {Logo,SidebarItem},
         computed : {
             ...mapState('permission',['mainNavPath']),
-            ...mapState('settings',['menuStyle']),
+            ...mapState('settings',['menuStyle','accordion']),
             ...mapGetters({
                 open : 'open',
                 currentMenuRoutes : 'permission/currentMenuRoutes'

@@ -16,7 +16,6 @@
                         <i class="el-icon-check check-icon" v-if="menuStyle === 'light'"></i>
                     </li>
                 </el-tooltip>
-
             </ul>
         </div>
         <el-divider></el-divider>
@@ -34,10 +33,19 @@
                     <span>固定header</span>
                     <el-switch v-model="fixedHeader"></el-switch>
                 </li>
-                <li class="setting-list-item">
-                    <span>下滑时隐藏header</span>
-                    <el-switch v-model="hideHeaderScrolling"></el-switch>
-                </li>
+<!--            功能暂未写-->
+                <el-tooltip class="item"
+                            effect="dark"
+                            content="固定Header时可配置"
+                            placement="left"
+                            :disabled="fixedHeader"
+                >
+                    <li class="setting-list-item" :class="{disabled : !fixedHeader}">
+                        <span>下滑时隐藏header</span>
+                        <el-switch v-model="hideHeaderScrolling" :disabled="!fixedHeader"></el-switch>
+                    </li>
+                </el-tooltip>
+
                 <li class="setting-list-item">
                     <span>菜单项手风琴模式</span>
                     <el-switch v-model="accordion"></el-switch>
@@ -168,6 +176,9 @@
                 display: flex;
                 align-items: center;
                 justify-content: space-between;
+                &.disabled{
+                    opacity: .5;
+                }
             }
         }
 

@@ -11,7 +11,7 @@ const {menuStyle,fixedSidebar,fixedHeader,hideHeaderScrolling,accordion,hideTabs
 const state = {
     theme : variables.theme,
     menuStyle : menuStyle, //导航风格
-    fixedSidebar : true,
+    fixedSidebar : fixedSidebar,
     fixedHeader : fixedHeader,
     hideHeaderScrolling :hideHeaderScrolling,
     accordion : accordion,

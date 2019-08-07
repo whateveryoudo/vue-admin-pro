@@ -1,6 +1,6 @@
 <template>
     <!--v-if="tabs.length > 0"-->
-    <div class="tab-menu-container" ref="menu" v-if="tabs.length > 0">
+    <div class="tab-menu-container" ref="menu" v-if="hideTabs && tabs.length > 0">
         <el-tabs :value="activeTab" type="card" @tab-remove="closeTab">
             <el-tab-pane
                     v-for="(item, index) in tabs"
@@ -54,7 +54,8 @@
             ...mapState('tabMenus',['tabs']),
             ...mapState('permission',['mainNavPath']),
             ...mapGetters('tabMenus',['activeTab']),
-            ...mapGetters(['permission_routes'])
+            ...mapGetters(['permission_routes']),
+            ...mapGetters('settings',['hideTabs'])
         },
         mounted(){
             this.initTabs();

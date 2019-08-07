@@ -1,13 +1,16 @@
 <template>
     <div class="basicLayout" :class="changeCls">
         <Sidebar :class="{' fixed' : fixedSidebar}"></Sidebar>
-        <div class="main-content" :style="{'padding-left' : fixedSidebar ? sideBarWidth + 'px' : 0}">
-            <div class="global-header">
+        <div class="main-content" :style="{
+                    'padding-left' : fixedSidebar ? sideBarWidth : 0,
+                    'padding-top' : fixedHeader ? paddingTop : 0
+                    }">
+            <div class="global-header" :class="{fixed : fixedHeader}" :style="{ width:fixedHeader ? `calc(100% - ${sideBarWidth})` : '100%'}">
                 <Navbar></Navbar>
                 <TabMenus></TabMenus>
-                <HeaderWrapper></HeaderWrapper>
-                <app-main></app-main>
             </div>
+              <HeaderWrapper></HeaderWrapper>
+            <app-main></app-main>
             <SettingDrawer></SettingDrawer>
         </div>
     </div>
@@ -29,7 +32,7 @@
 
         },
         computed : {
-            ...mapState('settings',['fixedSidebar']),
+            ...mapState('settings',['fixedSidebar','fixedHeader','hideTabs']),
             ...mapGetters([
                 'open'
             ]),
@@ -41,6 +44,9 @@
             },
             sideBarWidth(){
                 return variables.sideBarWidth;
+            },
+            paddingTop(){
+                return this.hideTabs ? '80px' : '108px';
             }
         },
         components : {
@@ -72,7 +78,13 @@
 <style lang="scss" scoped>
     @import "../styles/variables.scss";
     .global-header{
+
         position: relative;
+        &.fixed{
+            position: fixed;
+            top:0;
+            right:0
+        }
     }
     .basicLayout{
         /*左边菜单组件*/

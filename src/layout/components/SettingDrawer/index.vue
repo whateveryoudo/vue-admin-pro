@@ -48,8 +48,8 @@
         transition:right 225ms cubic-bezier(0,0,.2,1) 0s; //这里拷贝的drawer组件动画参数
         position: fixed;
         right:0;
-        top:300px;
-        z-index:3000;
+        top:200px;
+        z-index:2002;
         .drawer-trigger{
             display: flex;
             width: 48px;
