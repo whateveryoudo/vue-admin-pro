@@ -66,6 +66,7 @@
         .main-content{
             transition: margin-left .28s;
             margin-left: 210px;
+            background-color: $normalBg;
         }
         &.hideSidebar{
             .sidebar-container{
