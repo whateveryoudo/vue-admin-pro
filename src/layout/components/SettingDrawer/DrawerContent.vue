@@ -58,7 +58,9 @@
 
         </div>
         <el-divider></el-divider>
-        <el-button>拷贝配置</el-button>
+        <el-button class="btn-block">
+            <i class="el-icon-copy-document" style="margin-right: 5px;"></i>拷贝配置
+        </el-button>
     </div>
 </template>
 
