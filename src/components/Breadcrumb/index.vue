@@ -60,13 +60,28 @@
         }
     }
 </script>
+<style lang="scss">
+    .breadcrumb-container{
+        .el-breadcrumb__item{
+            .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link {
+                font-weight: normal;
+                color:rgba(0,0,0,.45);
+            }
+            &:last-child{
+                .el-breadcrumb__inner a, .el-breadcrumb__inner.is-link {
+                    color:rgba(0,0,0,.65);
+                }
+            }
+        }
 
+    }
+
+</style>
 <style scoped>
     .breadcrumb-container{
        /* float: left;*/
         height:20px;
         line-height: 20px;
-        margin-left: 10px;
-        margin-bottom: 10px;
+        padding-left: 10px;
     }
 </style>

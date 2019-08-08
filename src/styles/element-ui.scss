@@ -4,3 +4,28 @@
 .el-message-box{
   width:300px;
 }
+.v-modal{
+  opacity: .2;
+}
+.el-drawer__header{
+  margin-bottom: 0;
+}
+//card复写
+
+.el-card__header{
+  border-bottom: none;
+}
+.el-card__body{
+  overflow: hidden;
+  padding-top: 0;
+}
+//按钮复写
+
+.el-button{
+  &.btn-block{
+    width: 100%;
+  }
+  &.btn-dashed{
+    border-style: dashed;
+  }
+}

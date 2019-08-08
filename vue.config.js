@@ -22,6 +22,7 @@ module.exports = {
         },
         after: require('./mock/mock-server.js')
     },
+    lintOnSave : false,
     configureWebpack : {
         resolve: {
             alias: {
