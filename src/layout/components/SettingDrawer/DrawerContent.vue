@@ -58,7 +58,11 @@
 
         </div>
         <el-divider></el-divider>
-        <el-button class="btn-block">
+        <el-button class="btn-block"
+            v-clipboard:copy="settingStr"
+            v-clipboard:success="handleClipSuc"
+            v-clipboard:error="handleClipError"
+        >
             <i class="el-icon-copy-document" style="margin-right: 5px;"></i>拷贝配置
         </el-button>
     </div>
@@ -66,13 +70,21 @@
 
 <script>
     import ThemePicker from '@/components/ThemePicker'
+    import clipboard from '@/directive/clipboard/index.js'
+
+    import setting from '@/settings'
     export default {
         name: "DrawerContent",
         components : {
             ThemePicker
         },
+        directives: {
+            clipboard
+        },
         data(){
-            return {}
+            return {
+                settingStr : JSON.stringify(setting) //配置文件字段
+            }
         },
         computed : {
             menuStyle(){
@@ -138,12 +150,28 @@
         methods : {
             //风格改变 val - light,dark
             changeStyle(val){
-                debugger;
                 this.$store.commit('settings/CHANGE_SETTING', {
                     key: 'menuStyle',
                     value: val
                 })
-            }
+            },
+            //copy回调
+            handleClipSuc(e){
+                this.$message({
+                    message: '拷贝成功,请替换src/settings.js中内容',
+                    type: 'success',
+                    duration: 1500
+                })
+            },
+            //copy回调
+            handleClipError(e){
+                this.$message({
+                    message: e,
+                    type: 'success',
+                    duration: 1500
+                })
+            },
+
         }
     }
 </script>

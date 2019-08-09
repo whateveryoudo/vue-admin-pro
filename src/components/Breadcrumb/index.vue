@@ -19,7 +19,7 @@
             return {
                 crumbData : null,//用于显示的数据
                 homeRoute : {
-                    path : '/main1/dashboard', //默认追加得首页路径(注意：这里应与router.js的首个路由对应,默认跳转第一个路由地址)
+                    path : '/basic-tpl/dashboard', //默认追加得首页路径(注意：这里应与router.js的首个路由对应,默认跳转第一个路由地址)
                     meta : {title : '首页'}
                 }
             }

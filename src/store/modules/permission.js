@@ -2,7 +2,7 @@ import {asyncRoutes, constantRoutes} from '@/router'
 
 
 const state = {
-    mainNavPath : '/main1',//一级选中路由路径(默认首页)
+    mainNavPath : '/basic-tpl',//一级选中路由路径(默认首页)
     routes : [],
     addRoutes : []
 }
