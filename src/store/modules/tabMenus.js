@@ -8,7 +8,7 @@ const state = {
     activeIndex : getStore('activeIndex') || 0
     // tabs : [
     //     {title : '菜单1',path : '/',name : '1',icon : 'dashboard'},
-    //     {title : '菜单2',path : '/main1',name : '2',icon : 'dashboard'}
+    //     {title : '菜单2',path : '/basic-tpl',name : '2',icon : 'dashboard'}
     // ]  //存入标签对象
 }
 const getters = {
