@@ -1,11 +1,12 @@
 <template>
     <!--这里只会做单层遍历,为根节点-->
     <el-menu-item :index="basePath" v-if="!item.hidden && !item.hiddenInNavbar">
-            {{item.meta.title}}
+            {{generateTitle(item.meta.title)}}
         <!--{{basePath}}-->
     </el-menu-item>
 </template>
 <script>
+    import {generateTitle} from '@/utils'
     import {mapGetters} from 'vuex'
     export default {
         name: 'Navbar',
@@ -29,6 +30,9 @@
                 'permission_routes'
             ])
         },
+        methods : {
+            generateTitle
+        }
     }
 </script>
 <style lang="scss">

@@ -14,7 +14,7 @@
         <el-submenu :index="resolvePath(item.path)" v-else>
             <template slot="title">
                 <svg-icon :iconClass="item.meta.icon"></svg-icon>
-                <span v-if="item.meta">{{item.meta.title}}</span>
+                <span v-if="item.meta">{{generateTitle(item.meta.title)}}</span>
             </template>
             <SidebarItem
                     v-for="child in item.children"
@@ -30,6 +30,7 @@
     import path from 'path'
     import AppLink from './Link'
     import { isExternal } from '@/utils/validate'
+    import {generateTitle} from '@/utils'
     export default {
         name: "SidebarItem",
         props : {
@@ -82,7 +83,8 @@
                 }
 //                console.log(this.basePath,routePath);
                 return path.resolve(this.basePath, routePath)//返回完整的路径 如：example  goodsList => /example goodsList
-            }
+            },
+            generateTitle
         }
     }
 </script>

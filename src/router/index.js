@@ -7,33 +7,9 @@ Vue.use(Router);
 import LayoutOuter from '@/layout/layout-outer'
 import LayoutInner from '@/layout/layout-inner'
 
-const TplChildRouters = [
-    {
-        path: 'dashboard',
-        name: 'Dashboard',
-        component: () => import('@/views/basic-tpl/dashboard/index'),
-        meta: {
-            title: 'Dashboard',
-            icon: 'dashboard',
-            affix : true
-        }
-    },
-    {
-        path: 'tabulation',
-        component: LayoutInner,
-        redirect: '/main1/tabulation/basic-list',
-        meta: { title: '列表页面', icon: 'dashboard'},
+import TplChildRouters from './mainModules/basic-tpl'
 
-        children: [
-            {
-                path: 'basic-list',
-                component: () => import('@/views/main1/tabulation/basic-list'),
-                name: 'basic-list',
-                meta: { title: '基础列表'}
-            },
-        ]
-    },
-]
+
 
 const main2ChildRouters = [
     {
@@ -112,7 +88,7 @@ export const asyncRoutes = [
         redirect: '/basic-tpl/dashboard',
         children : TplChildRouters,
         meta : {
-            title : '基础模板'
+            title : 'basic-tpl'
         }
     },
     // {
