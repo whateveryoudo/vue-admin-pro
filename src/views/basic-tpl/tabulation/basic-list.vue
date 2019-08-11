@@ -242,7 +242,9 @@
             }
 
         }
-
+        .el-card__body{
+            padding-top: 0;
+        }
         .colum-div-image{
             width: 40px;
             height: 40px;

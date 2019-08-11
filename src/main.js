@@ -13,16 +13,22 @@ import '@/styles/index.scss' // global css
 import './icons'
 import i18n from './locales' // internationalization
 
+import * as filters from '@/filters'
 Vue.config.productionTip = false;
 //修改默认card不显示阴影(主要用于界面布局)
 
 Element.Card.props.shadow.default = 'never';
 
 
+
 Vue.use(Element, {
         i18n: (key, value) => i18n.t(key, value)
     }
 );
+//注册全局过滤器
+Object.keys(filters).forEach(key => {
+    Vue.filter(key,filters[key]);
+})
 
 new Vue({
   render: h => h(App),

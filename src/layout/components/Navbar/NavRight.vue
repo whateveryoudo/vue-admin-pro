@@ -21,6 +21,7 @@
             <div class="action-trigger language">
                 <svg-icon iconClass="language"></svg-icon>
             </div>
+            <!--给vue组件绑定事件时候，必须加上native ，否则会认为监听的是来自Item组件自定义的事件-->
             <el-dropdown-menu>
                 <el-dropdown-item :class="{selected : language === 'zh'}" @click.native="setLanguage('zh')">
                     <span style="font-size: 10px">CN</span>&nbsp;简体中文

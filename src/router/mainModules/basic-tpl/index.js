@@ -10,7 +10,7 @@ const TplChildRouters = [
     {
         path: 'dashboard',
         name: 'Dashboard',
-        component: () => import('@/views/basic-tpl/dashboard/index'),
+        component: LayoutInner,
         redirect:`${BaseModulePath}/dashboard/analysis`,
         meta: {
             title: 'dashboard',
