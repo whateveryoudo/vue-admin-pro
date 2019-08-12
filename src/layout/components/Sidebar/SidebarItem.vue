@@ -7,13 +7,15 @@
                         :index="resolvePath(onlyOneMenu.path)"
                 >
                     <svg-icon v-if="onlyOneMenu.meta.icon" :iconClass="onlyOneMenu.meta.icon"></svg-icon>
+                    <i v-if="onlyOneMenu.meta.elemIcon" :class="onlyOneMenu.meta.elemIcon"></i>
                     <span>{{onlyOneMenu.meta.title}}</span>
                 </el-menu-item>
             </AppLink>
         </template>
         <el-submenu :index="resolvePath(item.path)" v-else>
             <template slot="title">
-                <svg-icon :iconClass="item.meta.icon"></svg-icon>
+                <svg-icon v-if="item.meta.icon" :iconClass="item.meta.icon"></svg-icon>
+                <i v-if="item.meta.elemIcon" :class="item.meta.elemIcon"></i>
                 <span v-if="item.meta">{{generateTitle(item.meta.title)}}</span>
             </template>
             <SidebarItem
@@ -89,6 +91,10 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+    /*elem图标*/
+    .el-icon-s-grid{
+        font-size: 16px;
+        margin-right: 8px;
+    }
 </style>

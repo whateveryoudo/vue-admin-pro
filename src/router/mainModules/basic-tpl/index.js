@@ -31,7 +31,7 @@ const TplChildRouters = [
         path: 'tabulation',
         component: LayoutInner,
         redirect: '/basic-tpl/tabulation/basic-list',
-        meta: { title: '列表页面', icon: 'dashboard'},
+        meta: { title: '列表页面', elemIcon: 'el-icon-s-grid'},
 
         children: [
             {
