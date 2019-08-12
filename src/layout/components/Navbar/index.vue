@@ -83,7 +83,9 @@
             padding-left: 20px;
             float: left;
         }
-
+        .el-menu-item{
+            text-align: center;
+        }
         .el-menu.el-menu--horizontal {
             border-bottom: none;
         }

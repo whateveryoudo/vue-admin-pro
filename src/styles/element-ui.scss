@@ -10,6 +10,10 @@
 .el-drawer__header{
   margin-bottom: 0;
 }
+//navmenu复写
+.el-menu-item{
+  text-align: left;
+}
 //card复写
 
 .el-card__header{
@@ -17,7 +21,6 @@
 }
 .el-card__body{
   overflow: hidden;
-  padding-top: 0;
 }
 //按钮复写
 

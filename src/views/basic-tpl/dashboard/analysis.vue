@@ -1,0 +1,199 @@
+<template>
+    <div class="page-basic-layout analysis-container">
+        <el-row gutter="20">
+            <el-col :span="6">
+                <ChartCard>
+                    <div class="header clearfix">
+                        <span>{{$t('analysis.total-sales')}}</span>
+                        <el-tooltip effect="dark" :content="$t('analysis.introduce')" placement="top">
+                            <i class="el-icon-warning-outline card-title-icon"></i>
+                        </el-tooltip>
+                    </div>
+                    <div>
+                        <p class="total">{{200000 | toThousandFilter('¥')}}</p>
+                        <div class="trend-list">
+                            <Trend>
+                                {{$t('analysis.week')}}
+                                <span class="trendText">12%</span>
+                            </Trend>
+                            <Trend flag="down">
+                                {{$t('analysis.day')}}
+                                <span class="trendText">15%</span>
+                            </Trend>
+                        </div>
+
+                    </div>
+                    <div slot="footer" class="footer">
+                        <p class="daily-num">
+                            <span class="daily-num-label">
+                                {{$t('analysis.daily')}}
+                            </span>
+
+                            {{200000 | toThousandFilter('¥')}}
+                        </p>
+                    </div>
+                </ChartCard>
+            </el-col>
+            <el-col :span="6">
+                <ChartCard>
+                    <div class="header clearfix">
+                        <span>{{$t('analysis.total-sales')}}</span>
+                        <el-tooltip effect="dark" :content="$t('analysis.introduce')" placement="top">
+                            <i class="el-icon-warning-outline card-title-icon"></i>
+                        </el-tooltip>
+                    </div>
+                    <div>
+                        <p class="total">{{200000 | toThousandFilter('¥')}}</p>
+                        <div class="trend-list">
+                            <Trend>
+                                {{$t('analysis.week')}}
+                                <span class="trendText">12%</span>
+                            </Trend>
+                            <Trend flag="down">
+                                {{$t('analysis.day')}}
+                                <span class="trendText">15%</span>
+                            </Trend>
+                        </div>
+
+                    </div>
+                    <div slot="footer" class="footer">
+                        <p class="daily-num">
+                            <span class="daily-num-label">
+                                {{$t('analysis.daily')}}
+                            </span>
+
+                            {{200000 | toThousandFilter('¥')}}
+                        </p>
+                    </div>
+                </ChartCard>
+            </el-col>
+            <el-col :span="6">
+                <ChartCard>
+                    <div class="header clearfix">
+                        <span>{{$t('analysis.total-sales')}}</span>
+                        <el-tooltip effect="dark" :content="$t('analysis.introduce')" placement="top">
+                            <i class="el-icon-warning-outline card-title-icon"></i>
+                        </el-tooltip>
+                    </div>
+                    <div>
+                        <p class="total">{{200000 | toThousandFilter('¥')}}</p>
+                        <div class="trend-list">
+                            <Trend>
+                                {{$t('analysis.week')}}
+                                <span class="trendText">12%</span>
+                            </Trend>
+                            <Trend flag="down">
+                                {{$t('analysis.day')}}
+                                <span class="trendText">15%</span>
+                            </Trend>
+                        </div>
+
+                    </div>
+                    <div slot="footer" class="footer">
+                        <p class="daily-num">
+                            <span class="daily-num-label">
+                                {{$t('analysis.daily')}}
+                            </span>
+
+                            {{200000 | toThousandFilter('¥')}}
+                        </p>
+                    </div>
+                </ChartCard>
+            </el-col>
+            <el-col :span="6">
+                <ChartCard>
+                    <div class="header clearfix">
+                        <span>{{$t('analysis.total-sales')}}</span>
+                        <el-tooltip effect="dark" :content="$t('analysis.introduce')" placement="top">
+                            <i class="el-icon-warning-outline card-title-icon"></i>
+                        </el-tooltip>
+                    </div>
+                    <div>
+                        <p class="total">{{200000 | toThousandFilter('¥')}}</p>
+                        <div class="trend-list">
+                            <Trend>
+                                {{$t('analysis.week')}}
+                                <span class="trendText">12%</span>
+                            </Trend>
+                            <Trend flag="down">
+                                {{$t('analysis.day')}}
+                                <span class="trendText">15%</span>
+                            </Trend>
+                        </div>
+
+                    </div>
+                    <div slot="footer" class="footer">
+                        <p class="daily-num">
+                            <span class="daily-num-label">
+                                {{$t('analysis.daily')}}
+                            </span>
+
+                            {{200000 | toThousandFilter('¥')}}
+                        </p>
+                    </div>
+                </ChartCard>
+            </el-col>
+        </el-row>
+
+    </div>
+
+</template>
+
+<script>
+    import {ChartCard} from '@/components/Charts'
+    import Trend from '@/components/Trend'
+    export default {
+        name: "analysis",
+        components : {
+            ChartCard,
+            Trend
+        }
+    }
+</script>
+<style lang="scss">
+    .chart-card-container{
+        .el-card__body{
+            padding-bottom: 10px;
+        }
+    }
+
+</style>
+<style lang="scss" scoped>
+    .analysis-container{
+        .card-title-icon{
+            float: right;
+            cursor: pointer;
+        }
+    }
+    //卡片组
+    .chart-card-container{
+        color:rgba(0,0,0,.65);
+        .header{
+            color:rgba(0,0,0,.45);
+        }
+        .total{
+            color: rgba(0,0,0,.85);
+            font-size: 30px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+        .trend-list{
+            margin-bottom: 15px;
+            margin-top: 20px;
+            .trendText{
+                margin-left: 5px;
+            }
+        }
+        .footer{
+            border-top: 1px solid #e8e8e8;
+        }
+        .footer .daily-num{
+            margin-top: 15px;
+            .daily-num-label{
+                margin-right: 5px;
+            }
+        }
+
+    }
+
+</style>

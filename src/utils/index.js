@@ -5,6 +5,7 @@
  * desc：通用的一些工具方法
  */
 
+
 const TOKENKEY = 'Admin-Token';//token键
 
 /**
@@ -56,4 +57,13 @@ export const setToken = (token) => {
 export const removeToken = () => {
     return removeStore(TOKENKEY);
 }
-
+/**
+ * 根据key 获取处理后的title(这里在methods中调用,不要用 => )
+ * @param {String}  title - 标题
+ */
+export function generateTitle(title){
+    if(this.$te('route.' + title)){
+        return this.$t('route.' + title)
+    };
+    return title;
+}

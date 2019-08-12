@@ -34,6 +34,7 @@
 
         },
         computed : {
+            ...mapState('tabMenus',['tabs']),
             ...mapState('settings',['fixedSidebar','fixedHeader','hideTabs']),
             ...mapGetters([
                 'open'
@@ -48,7 +49,8 @@
                 return  this.open ?  variables.sideBarWidth : variables.colSideBarWidth;
             },
             paddingTop(){
-                return this.hideTabs ? '80px' : '108px';
+                return this.hideTabs ? '80px' :
+                    this.tabs.length > 0 ? '108px' : '60px';
             }
         },
         components : {
