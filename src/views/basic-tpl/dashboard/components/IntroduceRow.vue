@@ -1,5 +1,5 @@
 <template>
-    <el-row gutter="20">
+    <el-row :gutter="20">
         <el-col :span="6">
             <ChartCard>
                 <div class="header clearfix">
@@ -43,7 +43,7 @@
                 </div>
                 <div>
                     <p class="total">{{200000 | toThousandFilter('¥')}}</p>
-                  <MiniArea></MiniArea>
+                    <MiniArea :chartData="miniAreaData"></MiniArea>
 
                 </div>
                 <div slot="footer" class="footer">
@@ -67,16 +67,7 @@
                 </div>
                 <div>
                     <p class="total">{{200000 | toThousandFilter('¥')}}</p>
-                    <div class="trend-list">
-                        <Trend>
-                            {{$t('analysis.week')}}
-                            <span class="trendText">12%</span>
-                        </Trend>
-                        <Trend flag="down">
-                            {{$t('analysis.day')}}
-                            <span class="trendText">15%</span>
-                        </Trend>
-                    </div>
+                    <MiniBar></MiniBar>
 
                 </div>
                 <div slot="footer" class="footer">
@@ -127,14 +118,20 @@
 </template>
 
 <script>
-    import {ChartCard,MiniArea} from '@/components/Charts'
+    import {ChartCard,MiniArea,MiniBar} from '@/components/Charts'
     import Trend from '@/components/Trend'
     export default {
         name: "IntroduceRow",
+        data(){
+            return {
+                miniAreaData : [100, 120, 161, 134, 105, 160, 165]
+            }
+        },
         components : {
             ChartCard,
             Trend,
-            MiniArea
+            MiniArea,
+            MiniBar
         }
     }
 </script>
@@ -160,8 +157,8 @@
             margin-bottom: 15px;
         }
         .trend-list{
-            margin-bottom: 15px;
-            margin-top: 20px;
+            height:50px;
+            line-height: 50px;
             .trendText{
                 margin-left: 5px;
             }
@@ -175,6 +172,8 @@
                 margin-right: 5px;
             }
         }
-
+        .card-title-icon{
+            float: right;
+        }
     }
 </style>

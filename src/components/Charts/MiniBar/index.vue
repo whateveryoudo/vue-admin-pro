@@ -5,8 +5,9 @@
 <script>
     import echarts from 'echarts'
     require('echarts/theme/macarons') // echarts theme
+    const animationDuration = 6000
     export default {
-        name: "MiniArea",
+        name: "MiniBar",
         props : {
             chartData: {
                 type : Array,
@@ -90,20 +91,15 @@
                         padding: [5, 10],
                         textStyle : {fontSize : 12}
                     },
-                    series : [{
-                        type : 'line',
-                        smooth: true,
-                        // symbol : 'none', 去掉了无提示？
-                        itemStyle: {
-                            normal: {
-                                color: 'rgb(151,95,228)',
-                                areaStyle: {
-                                    color: 'rgb(151,95,228)'
-                                }
-                            }
-                        },
-                        data: [100, 120, 161, 134, 105, 160, 165],
-                    }]
+                    series : [
+                        {
+                            type: 'bar',
+                            // stack: 'vistors',
+                            barWidth: '60%',
+                            data: [79, 52, 200, 334, 390, 330, 220],
+                            animationDuration
+                        }
+                    ]
                 })
             }
         }
