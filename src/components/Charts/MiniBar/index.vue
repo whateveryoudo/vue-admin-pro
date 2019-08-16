@@ -5,13 +5,13 @@
 <script>
     import echarts from 'echarts'
     require('echarts/theme/macarons') // echarts theme
-    const animationDuration = 6000
+    const animationDuration = 2000
     export default {
         name: "MiniBar",
         props : {
             chartData: {
                 type : Array,
-                required: true
+                // required: true
             },
             width: {
                 type: String,
@@ -96,6 +96,9 @@
                             type: 'bar',
                             // stack: 'vistors',
                             barWidth: '60%',
+                            itemStyle : {
+                                color : 'rgb(24, 144, 255)'
+                            },
                             data: [79, 52, 200, 334, 390, 330, 220],
                             animationDuration
                         }

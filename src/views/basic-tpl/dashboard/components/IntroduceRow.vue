@@ -68,7 +68,6 @@
                 <div>
                     <p class="total">{{200000 | toThousandFilter('¥')}}</p>
                     <MiniBar></MiniBar>
-
                 </div>
                 <div slot="footer" class="footer">
                     <p class="daily-num">
@@ -91,7 +90,12 @@
                 </div>
                 <div>
                     <p class="total">{{200000 | toThousandFilter('¥')}}</p>
-                    <div class="trend-list">
+                    <div class="trend-list" style="display: flex;align-items: center">
+                        <MiniProgress  :percent="percent" :strokeWidth="8"></MiniProgress>
+                    </div>
+                </div>
+                <div slot="footer" class="footer">
+                    <p class="daily-num">
                         <Trend>
                             {{$t('analysis.week')}}
                             <span class="trendText">12%</span>
@@ -100,16 +104,6 @@
                             {{$t('analysis.day')}}
                             <span class="trendText">15%</span>
                         </Trend>
-                    </div>
-
-                </div>
-                <div slot="footer" class="footer">
-                    <p class="daily-num">
-                            <span class="daily-num-label">
-                                {{$t('analysis.daily')}}
-                            </span>
-
-                        {{200000 | toThousandFilter('¥')}}
                     </p>
                 </div>
             </ChartCard>
@@ -118,20 +112,27 @@
 </template>
 
 <script>
-    import {ChartCard,MiniArea,MiniBar} from '@/components/Charts'
+    import {ChartCard,MiniArea,MiniBar,MiniProgress} from '@/components/Charts'
     import Trend from '@/components/Trend'
     export default {
         name: "IntroduceRow",
         data(){
             return {
-                miniAreaData : [100, 120, 161, 134, 105, 160, 165]
+                miniAreaData : [100, 120, 161, 134, 105, 160, 165],
+                percent : 0
             }
         },
         components : {
             ChartCard,
             Trend,
             MiniArea,
-            MiniBar
+            MiniBar,
+            MiniProgress
+        },
+        created(){
+            window.requestAnimationFrame(() => {
+                this.percent = 35;
+            })
         }
     }
 </script>

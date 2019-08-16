@@ -72,7 +72,8 @@
                 width:54px;
             }
             .el-submenu,.el-menu-item,.el-submenu__title{
-                &>span,&>i{
+                //这里不要拦截图标显示
+                &>span,&>i:not(.el-icon-s-grid){
                     display: none;
                 }
             }

@@ -96,5 +96,6 @@
     .el-icon-s-grid{
         font-size: 16px;
         margin-right: 8px;
+        margin-left: -5px;
     }
 </style>
