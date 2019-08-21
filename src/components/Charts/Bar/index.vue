@@ -17,9 +17,13 @@
                 type: String,
                 default: '100%'
             },
+            title : {
+                type : String,
+                default : ''
+            },
             height: {
                 type: String,
-                default: '50px'
+                default: '360px'
             }
         },
         data(){
@@ -39,57 +43,36 @@
             },
             setOptions(){
                 this.chart.setOption({
+                    title : {
+                        text : this.title,
+                        textStyle : {color : '#333',fontSize:14},
+                        top:10
+                    },
                     grid: {
                         left: 10,
                         right: 10,
                         bottom: 10,
-                        top: 0,
+                        top: 60,
                         containLabel: true
                     },
                     xAxis : {
                         data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-                        boundaryGap: false,
-                        axisLabel : {
-                            show : false
-                        },
-                        axisLine : {
-                            show : false
-                        },
-                        splitLine : {
-                            show : false
-                        },
-                        splitArea : {
-                            show : false
-                        },
                         axisTick : {
                             show : false
                         }
                     },
 
                     yAxis : {
-                        axisLabel : {
-                            show : false
-                        },
-                        axisLine : {
-                            show : false
-                        },
-                        splitLine : {
-                            show : false
-                        },
-                        splitArea : {
-                            show : false
-                        },
                         axisTick : {
                             show : false
                         }
                     },
                     //低高度无法随鼠标移动 ？？
                     tooltip: {
-                        axisPointer: {
-                            type: 'none'
-                        },
-                        padding: [5, 10],
-                        textStyle : {fontSize : 12}
+                        trigger: 'axis',
+                        axisPointer: { // 坐标轴指示器，坐标轴触发有效
+                            type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+                        }
                     },
                     series : [
                         {

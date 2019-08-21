@@ -1,31 +1,24 @@
 <template>
     <div class="page-basic-layout analysis-container">
         <IntroduceRow></IntroduceRow>
-        <div class="sales-wrapper">
-            <el-tabs v-model="activeIndex" @tab-click="handleClick">
-                <el-tab-pane label="销售额" name="1">
-                    <Bar></Bar>
-                </el-tab-pane>
-                <el-tab-pane label="访问量" name="2">访问量</el-tab-pane>
-            </el-tabs>
-        </div>
+        <ProportionSales></ProportionSales>
+
     </div>
 
 </template>
 
 <script>
     import IntroduceRow from './components/IntroduceRow'
-    import {Bar} from '@/components/Charts'
+    import ProportionSales from './components/ProportionSales'
     export default {
         name: "analysis",
         data(){
             return {
-                activeIndex : '1'
             }
         },
         components : {
             IntroduceRow,
-            Bar
+            ProportionSales
         },
         methods : {
             handleClick(tab, event){
