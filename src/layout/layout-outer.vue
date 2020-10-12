@@ -73,8 +73,15 @@
             }
             .el-submenu,.el-menu-item,.el-submenu__title{
                 //这里不要拦截图标显示
-                &>span,&>i:not(.el-icon-s-grid){
+                &>span,&>i.el-icon-arrow-right{
                     display: none;
+                }
+            }
+             .el-submenu__title,.el-menu-item{
+                padding:0 !important;
+                text-align: center;
+                .svg-icon,[class^=el-icon-]{
+                    margin:0;
                 }
             }
         }

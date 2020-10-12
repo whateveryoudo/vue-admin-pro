@@ -2,21 +2,27 @@
 // import user from './user'
 
 const Mock = require('mockjs')
-const {user} = require('./user.js')
+const user = require('./user.js')
+const file = require('./file.js')
 
 
 
 const mocks = [
-  ...user
+  ...user,
+  ...file
 ]
 
 
-const responseFake = (url, type, respond) => {
+const responseFake = (url, type, respond, isFile) => {
   return {
     url : new RegExp(`/mock${url}`),
       type: type || 'get',
       response(req,res){
-        res.json(Mock.mock(respond instanceof Function ? respond(req,res) : respond))
+        if (isFile) {
+          res.send(Mock.mock(respond instanceof Function ? respond(req,res) : respond));
+        } else {
+          res.json(Mock.mock(respond instanceof Function ? respond(req,res) : respond))
+        }
       }
   }
 }
@@ -27,6 +33,6 @@ const responseFake = (url, type, respond) => {
 
 module.exports = {
     mocks : mocks.map(route => {
-        return responseFake(route.url,route.type,route.response);
+        return responseFake(route.url,route.type,route.response, route.isFile);
     })
 }

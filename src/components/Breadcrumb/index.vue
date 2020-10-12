@@ -1,6 +1,6 @@
 <template>
     <el-breadcrumb separator="/" class="breadcrumb-container">
-        <el-breadcrumb-item v-for="(crumb,index) in crumbData">
+        <el-breadcrumb-item v-for="(crumb,index) in crumbData" :key="index">
 <!--            最后一项 | 没有重定向的项-->
             <span v-if="crumb.redirect === 'noRedirect' || (index === crumbData.length - 1) ">
                 {{crumb.meta.title}}

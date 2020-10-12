@@ -42,5 +42,11 @@ const TplChildRouters = [
             },
         ]
     },
+    {
+        path: 'download',
+        component: () => import('@/views/basic-tpl/downLoad'),
+        name: 'download',
+        meta: { title: '文件下载', elemIcon: 'el-icon-files'}
+    },
 ]
 export default TplChildRouters

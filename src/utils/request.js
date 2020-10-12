@@ -4,7 +4,7 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 const service = axios.create({
     baseURL : process.env.VUE_APP_BASE_API,//地址为 根据配置获取接口地址前缀+请求地址
-    timeout : 5000
+    timeout : 10 * 10000
 })
 
 service.interceptors.request.use(
@@ -25,7 +25,9 @@ service.interceptors.request.use(
 service.interceptors.response.use(
     response => {
         const res = response.data;
-
+        if (!res.code) {
+            return res;
+        }
         if(res.code !== 20000){
             Message({
                 message : res.message || '服务器出错',

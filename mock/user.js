@@ -25,7 +25,7 @@ const users = {
 }
 
 
-exports.user = [
+module.exports = [
         {
             url : '/user/login',
             type : 'post',

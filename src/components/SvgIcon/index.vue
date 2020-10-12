@@ -36,5 +36,6 @@
         fill: currentColor;
         vertical-align: -0.15em;
         margin-right:10px;
+        margin-left:5px;
     }
 </style>

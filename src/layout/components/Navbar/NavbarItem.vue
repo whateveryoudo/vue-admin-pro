@@ -41,7 +41,6 @@
     }
     .el-menu-item{
       padding-left: 200px;
-      width: 130px;
       background-color:white;
       text-align:center;
       height: 55px;
