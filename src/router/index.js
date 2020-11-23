@@ -16,20 +16,20 @@ const main2ChildRouters = [
         path: 'example',
         component: LayoutInner,
         redirect: '/main2/example/goodsList',
-        meta: { title: '表格', icon: 'dashboard'},
+        meta: { title: '表格', icon: 'dashboard' },
 
         children: [
             {
                 path: 'goodsList',
                 component: () => import('@/views/main2/example/goodsList'),
                 name: 'GoodsList',
-                meta: { title: '商品列表'}
+                meta: { title: '商品列表' }
             },
             {
                 path: 'userList',
                 component: () => import('@/views/main2/example/userList'),
                 name: 'UserList',
-                meta: { title: '用户列表'}
+                meta: { title: '用户列表' }
             },
         ]
     },
@@ -37,32 +37,32 @@ const main2ChildRouters = [
         path: 'Commodity',
         component: LayoutInner,
         redirect: '/main2/Commodity/categorieslist',
-        meta: { title: '商品', icon: 'dashboard'},
+        meta: { title: '商品', icon: 'dashboard' },
 
         children: [
             {
                 path: 'categorieslist',
                 component: () => import('@/views/main2/Commodity/categorieslist'),
                 name: 'Categorieslist',
-                meta: { title: '商品分类'}
+                meta: { title: '商品分类' }
             },
-            
+
         ]
     },
-    
+
 ]
 
 //不需要判断动态判断权限的路由（一些通用页面）
 
-export const  constantRoutes = [
+export const constantRoutes = [
     //添加redirect跳转路由（tabs刷新当前页）
     {
         path: '/redirect',
         component: LayoutOuter,
         hidden: true,
-        children : [
+        children: [
             {
-                path : '/redirect/:path*',//为什么加个* 才能匹配到？？
+                path: '/redirect/:path*',//为什么加个* 才能匹配到？？
                 component: () => import('@/views/redirect/index'),
             }
         ]
@@ -77,18 +77,18 @@ export const  constantRoutes = [
 //需要根据用户角色 判断的路由
 export const asyncRoutes = [
     {
-        path : '/',
+        path: '/',
         component: LayoutOuter,
         redirect: '/basic-tpl',
-        hiddenInNavbar : true
+        hiddenInNavbar: true
     },
     {
-        path : '/basic-tpl',
+        path: '/basic-tpl',
         component: LayoutOuter,
         redirect: '/basic-tpl/dashboard',
-        children : TplChildRouters,
-        meta : {
-            title : 'basic-tpl'
+        children: TplChildRouters,
+        meta: {
+            title: 'basic-tpl'
         }
     },
     // {
@@ -104,8 +104,8 @@ export const asyncRoutes = [
 
 
 const createRouter = () => new Router({
-    routes : constantRoutes,
-    scrollBehavior : () => ({y : 0})
+    routes: constantRoutes,
+    scrollBehavior: () => ({ y: 0 })
 })
 
 const router = createRouter();
