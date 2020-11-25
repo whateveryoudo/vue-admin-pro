@@ -40,7 +40,7 @@ module.exports = [
   },
   {
     url: "/system-api/fetchDetail",
-    type: "post",
+    type: "get",
     response: (req) => {
       const appInfo = appData.find(item => item.id === req.query.id) || {};
       return {

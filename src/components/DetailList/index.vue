@@ -27,7 +27,7 @@ const Item = {
   },
   inject: {
     col: {
-      type: Number
+      type: [String, Number]
     }
   },
   render () {
@@ -47,7 +47,7 @@ export default {
       default: ""
     },
     col: {
-      type: Number,
+      type: [String, Number],
       default: 3
     }
   },

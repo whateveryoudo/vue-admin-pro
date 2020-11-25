@@ -30,7 +30,7 @@
         <el-table-column prop="operation" label="操作" width="260">
           <template slot-scope="scope">
             <OperationRender
-              :triggerEvent="(item) => handleClick(item, record)"
+              :triggerEvent="(item) => handleClick(item, scope.row)"
               :operationData="operationData"
               :record="scope.row"
             />
@@ -54,7 +54,7 @@
      <AppDetail
       v-if="appDetailVisible.destroy"
       :visible="appDetailVisible.visible"
-      :menuId="record.id"
+      :appId="record.id"
       @closeModal="toggleModal('appDetailVisible', false)"
     />
   </div>

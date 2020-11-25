@@ -1,6 +1,6 @@
 // 应用列表数据（默认一条数据）
 const appData = [
-  { id: "5da58ac7800eca25b86d4496", name: "UserSystem", path: "/userSystem", component: "BasicLayout", showSider: true, title: "用户系统", code: "", instructions: "", sort: 1, createTime: "", status: 1, icon: "setting" }
+  { id: "5da58ac7800eca25b86d4496", desc: "", name: "UserSystem", path: "/userSystem", component: "BasicLayout", showSider: true, title: "用户系统", code: "", instructions: "", sort: 1, createTime: "", status: 1, icon: "setting" }
 ];
 // 应用映射菜单(id映射)
 const treeMenuMap = {

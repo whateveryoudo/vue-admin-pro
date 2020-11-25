@@ -14,4 +14,7 @@ import numeral from "numeral"
 export const toThousandFilter = (num, prefixFlag = "") => {
   return `${prefixFlag ? prefixFlag + " " : ""}${numeral(num).format("0,0.00")}`;
 }
-
+// 空数据显示
+export const nullText = (val) => {
+  return val || "-";
+}

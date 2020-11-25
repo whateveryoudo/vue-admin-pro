@@ -1,27 +1,35 @@
 <template>
-<div>
-  <el-dialog title="详情信息" :visible="visible" @close="handleClose">
-    <DetailList v-loading="loading">
-      <DetailListItem term="上级菜单">{{detailInfo.parentMenuName | nullText}}</DetailListItem>
-      <DetailListItem :term="menuName">{{detailInfo.title | nullText}}</DetailListItem>
-      <DetailListItem :term="menuPathDesc">{{detailInfo.component | nullText}}</DetailListItem>
-      <DetailListItem v-if="detailInfo.nodeType === 1" term="前端组件">{{detailInfo.component | nullText}}</DetailListItem>
-      <DetailListItem term="排序">{{detailInfo.sort | nullText}}</DetailListItem>
-    </DetailList>
-  </el-dialog>
-</div>
+  <div>
+    <el-dialog title="详情信息" :visible="visible" @close="handleClose">
+      <DetailList v-loading="loading" col="2">
+        <DetailListItem term="应用编码">{{
+          detailInfo.code | nullText
+        }}</DetailListItem>
+        <DetailListItem term="应用名称">{{
+          detailInfo.title | nullText
+        }}</DetailListItem>
+        <DetailListItem term="应用状态">{{
+          detailInfo.status | nullText
+        }}</DetailListItem>
+        <DetailListItem term="应用图标"></DetailListItem>
+        <DetailListItem term="应用描述" col="1">{{
+          detailInfo.desc | nullText
+        }}</DetailListItem>
+      </DetailList>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
-import DetailList from "@/components/DetailList/index.vue"
-import { fetchDetail } from "@/api/appManage"
+import DetailList from "@/components/DetailList/index.vue";
+import { fetchDetail } from "@/api/appManage";
 export default {
   props: {
     visible: {
       type: Boolean,
       default: false
     },
-    menuId: {
+    appId: {
       type: String,
       default: ""
     }
@@ -34,34 +42,25 @@ export default {
     return {
       loading: false,
       detailInfo: {}
-    }
+    };
   },
-  computed: {
-    menuPathDesc () {
-      return this.detailInfo.nodeType === 1 ? "菜单路径" : "操作标记"
-    },
-    menuName () {
-      return this.detailInfo.nodeType === 1 ? "菜单名称" : "操作名称"
-    }
-  },
+  computed: {},
   created () {
-    this.menuId && (this.getDetail());
+    this.appId && this.getDetail();
   },
-  mounted () {
-
-  },
+  mounted () {},
   methods: {
     async getDetail () {
       this.loading = true;
-      const res = await fetchDetail(this.menuId);
+      const res = await fetchDetail(this.appId);
       this.loading = false;
-      this.detailInfo = res.data.menuInfo;
+      this.detailInfo = res.data;
     },
     handleClose () {
       this.$emit("closeModal");
     }
   }
-}
+};
 </script>
 <style scoped>
 </style>
