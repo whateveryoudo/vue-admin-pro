@@ -3,12 +3,10 @@
 
 const Mock = require("mockjs")
 const user = require("./user.js")
-const file = require("./file.js")
 const application = require("./application.js")
 
 const mocks = [
   ...user,
-  ...file,
   ...application
 ]
 

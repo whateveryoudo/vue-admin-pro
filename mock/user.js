@@ -39,10 +39,10 @@ module.exports = [
     }
   },
   {
-    url: "/user/logOut", // 这里不要写为login开头  会被第一个拦截
+    url: "/user-api/logOut", // 这里不要写为login开头  会被第一个拦截
     type: "post",
     response: () => {
-      // 未添加清除操作
+      // 未添加清除操作,直接返回
       return {
         code: 20000,
         data: "success"

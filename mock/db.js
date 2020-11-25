@@ -11,7 +11,6 @@ const treeMenuMap = {
       component: "Layout",
       meta: { title: "系统管理", elemIcon: "el-icon-setting" },
       children: [
-        { path: "/menuManage", name: "MenuManage", meta: { elemIcon: "el-icon-menu", title: "菜单权限管理" }, component: "MenuManageList" },
         { path: "/appManage", name: "AppManage", meta: { elemIcon: "el-icon-s-shop", title: "应用管理" }, component: "AppManageList" }
       ]
     }

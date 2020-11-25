@@ -6,8 +6,9 @@ const state = {
   /** **字典表合集 start*****/
   SYSTEM_MENU_TYPE: [],
   ACCOUT_STATUS: [],
-  APP_STATUS: []
+  APP_STATUS: [],
   /** ***end*****/
+  projectName: "vue-admin-template"
 }
 const getters = {
   open: state => state.app.sidebar.open,

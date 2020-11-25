@@ -7,7 +7,7 @@
       :rules="loginRules"
     >
       <div class="title-container">
-        <h3 class="title">vue-admin-pro</h3>
+        <h3 class="title">{{projectName}}</h3>
       </div>
       <el-form-item prop="username">
         <i class="icon el-icon-user"></i>
@@ -68,6 +68,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(["projectName"]),
     ...mapState("user", ["name"]),
     ...mapGetters("permission", ["transformedRoutes"])
   },

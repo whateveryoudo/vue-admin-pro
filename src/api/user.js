@@ -31,7 +31,7 @@ export function getInfo (token) {
 
 export function logOut (token) {
   return request({
-    url: "/user/logOut",
+    url: `${PREFIX.API_USER}/logOut`,
     method: "post",
     params: token
   })
