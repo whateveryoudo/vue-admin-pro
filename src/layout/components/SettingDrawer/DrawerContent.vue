@@ -69,111 +69,111 @@
 </template>
 
 <script>
-    import ThemePicker from '@/components/ThemePicker'
-    import clipboard from '@/directive/clipboard/index.js'
+import ThemePicker from "@/components/ThemePicker"
+import clipboard from "@/directive/clipboard/index.js"
 
-    import setting from '@/settings'
-    export default {
-        name: "DrawerContent",
-        components : {
-            ThemePicker
-        },
-        directives: {
-            clipboard
-        },
-        data(){
-            return {
-                settingStr : JSON.stringify(setting) //配置文件字段
-            }
-        },
-        computed : {
-            menuStyle(){
-                return this.$store.state.settings.menuStyle;
-            },
-
-            fixedSidebar : {
-                get(){
-                    return this.$store.state.settings.fixedSidebar;
-                },
-                set(val){
-                    this.$store.commit('settings/CHANGE_SETTING', {
-                        key: 'fixedSidebar',
-                        value: val
-                    })
-                }
-            },
-            fixedHeader : {
-                get(){
-                    return this.$store.state.settings.fixedHeader;
-                },
-                set(val){
-                    this.$store.commit('settings/CHANGE_SETTING', {
-                        key: 'fixedHeader',
-                        value: val
-                    })
-                }
-            },
-            hideHeaderScrolling : {
-                get(){
-                    return this.$store.state.settings.hideHeaderScrolling;
-                },
-                set(val){
-                    this.$store.commit('settings/CHANGE_SETTING', {
-                        key: 'hideHeaderScrolling',
-                        value: val
-                    })
-                }
-            },
-            accordion : {
-                get(){
-                    return this.$store.state.settings.accordion;
-                },
-                set(val){
-                    this.$store.commit('settings/CHANGE_SETTING', {
-                        key: 'accordion',
-                        value: val
-                    })
-                }
-            },
-            hideTabs : {
-                get(){
-                    return this.$store.state.settings.hideTabs;
-                },
-                set(val){
-                    this.$store.commit('settings/CHANGE_SETTING', {
-                        key: 'hideTabs',
-                        value: val
-                    })
-                }
-            }
-        },
-        methods : {
-            //风格改变 val - light,dark
-            changeStyle(val){
-                this.$store.commit('settings/CHANGE_SETTING', {
-                    key: 'menuStyle',
-                    value: val
-                })
-            },
-            //copy回调
-            handleClipSuc(e){
-                this.$message({
-                    message: '拷贝成功,请替换src/settings.js中内容',
-                    type: 'success',
-                    duration: 1500
-                })
-            },
-            //copy回调
-            handleClipError(e){
-                this.$message({
-                    message: e,
-                    type: 'success',
-                    duration: 1500
-                })
-            },
-
-        }
+import setting from "@/settings"
+export default {
+  name: "DrawerContent",
+  components: {
+    ThemePicker
+  },
+  directives: {
+    clipboard
+  },
+  data () {
+    return {
+      settingStr: JSON.stringify(setting) // 配置文件字段
     }
+  },
+  computed: {
+    menuStyle () {
+      return this.$store.state.settings.menuStyle;
+    },
+
+    fixedSidebar: {
+      get () {
+        return this.$store.state.settings.fixedSidebar;
+      },
+      set (val) {
+        this.$store.commit("settings/CHANGE_SETTING", {
+          key: "fixedSidebar",
+          value: val
+        })
+      }
+    },
+    fixedHeader: {
+      get () {
+        return this.$store.state.settings.fixedHeader;
+      },
+      set (val) {
+        this.$store.commit("settings/CHANGE_SETTING", {
+          key: "fixedHeader",
+          value: val
+        })
+      }
+    },
+    hideHeaderScrolling: {
+      get () {
+        return this.$store.state.settings.hideHeaderScrolling;
+      },
+      set (val) {
+        this.$store.commit("settings/CHANGE_SETTING", {
+          key: "hideHeaderScrolling",
+          value: val
+        })
+      }
+    },
+    accordion: {
+      get () {
+        return this.$store.state.settings.accordion;
+      },
+      set (val) {
+        this.$store.commit("settings/CHANGE_SETTING", {
+          key: "accordion",
+          value: val
+        })
+      }
+    },
+    hideTabs: {
+      get () {
+        return this.$store.state.settings.hideTabs;
+      },
+      set (val) {
+        this.$store.commit("settings/CHANGE_SETTING", {
+          key: "hideTabs",
+          value: val
+        })
+      }
+    }
+  },
+  methods: {
+    // 风格改变 val - light,dark
+    changeStyle (val) {
+      this.$store.commit("settings/CHANGE_SETTING", {
+        key: "menuStyle",
+        value: val
+      })
+    },
+    // copy回调
+    handleClipSuc () {
+      this.$message({
+        message: "拷贝成功,请替换src/settings.js中内容",
+        type: "success",
+        duration: 1500
+      })
+    },
+    // copy回调
+    handleClipError (e) {
+      this.$message({
+        message: e,
+        type: "success",
+        duration: 1500
+      })
+    }
+
+  }
+}
 </script>
 
 <style lang="scss" scoped>

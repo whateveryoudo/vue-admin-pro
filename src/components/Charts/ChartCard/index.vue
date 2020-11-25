@@ -11,15 +11,15 @@
 </template>
 
 <script>
-    export default {
-        name: "ChartCard",
-        props : {
-            hasHeader : {
-                type : Boolean,
-                default : false
-            }
-        }
+export default {
+  name: "ChartCard",
+  props: {
+    hasHeader: {
+      type: Boolean,
+      default: false
     }
+  }
+}
 </script>
 <!--scoped下 子组件无法影响 slot 样式-->
 <style lang="scss">

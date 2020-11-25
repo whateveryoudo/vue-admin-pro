@@ -18,30 +18,30 @@
 </template>
 
 <script>
-    import DrawerContent from './DrawerContent.vue'
-    export default {
-        name: "SettingDrawer",
-        data(){
-            return {
-                drawerWidth : '300px', //注意这里传入 number无效
-                visible : false,
-                direction : 'rtl'
-            }
-        },
-        computed : {
-            theme() {
-                return this.$store.state.settings.theme
-            }
-        },
-        components : {
-            DrawerContent
-        },
-        methods : {
-            toggleDrawer(){
-                this.visible = !this.visible
-            }
-        }
+import DrawerContent from "./DrawerContent.vue"
+export default {
+  name: "SettingDrawer",
+  data () {
+    return {
+      drawerWidth: "300px", // 注意这里传入 number无效
+      visible: false,
+      direction: "rtl"
     }
+  },
+  computed: {
+    theme () {
+      return this.$store.state.settings.theme
+    }
+  },
+  components: {
+    DrawerContent
+  },
+  methods: {
+    toggleDrawer () {
+      this.visible = !this.visible
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
     .setting-drawer-wrapper{

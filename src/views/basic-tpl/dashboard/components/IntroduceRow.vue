@@ -112,29 +112,29 @@
 </template>
 
 <script>
-    import {ChartCard,MiniArea,MiniBar,MiniProgress} from '@/components/Charts'
-    import Trend from '@/components/Trend'
-    export default {
-        name: "IntroduceRow",
-        data(){
-            return {
-                miniAreaData : [100, 120, 161, 134, 105, 160, 165],
-                percent : 0
-            }
-        },
-        components : {
-            ChartCard,
-            Trend,
-            MiniArea,
-            MiniBar,
-            MiniProgress
-        },
-        created(){
-            window.requestAnimationFrame(() => {
-                this.percent = 35;
-            })
-        }
+import { ChartCard, MiniArea, MiniBar, MiniProgress } from "@/components/Charts"
+import Trend from "@/components/Trend"
+export default {
+  name: "IntroduceRow",
+  data () {
+    return {
+      miniAreaData: [100, 120, 161, 134, 105, 160, 165],
+      percent: 0
     }
+  },
+  components: {
+    ChartCard,
+    Trend,
+    MiniArea,
+    MiniBar,
+    MiniProgress
+  },
+  created () {
+    window.requestAnimationFrame(() => {
+      this.percent = 35;
+    })
+  }
+}
 </script>
 <style lang="scss">
     .chart-card-container{

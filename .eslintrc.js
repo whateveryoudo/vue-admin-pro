@@ -23,7 +23,7 @@ module.exports = {
     'camelcase': [2, { 'properties': 'never' }], // 强制驼峰命名规则
     'key-spacing': [2, { 'beforeColon': false, 'afterColon': true }], // 对象字面量中冒号的前后空格
     'new-cap': [2, { 'newIsCap': true, 'capIsNew': false }], // 构造函数名字首字母要大写
-    'quotes': [2], // 变量必须使用单引号
+    'quotes': [2, "double"],
     'no-multiple-empty-lines': [2, { 'max': 1 }], // 空格最多不能超过两行
     'no-mixed-spaces-and-tabs': 2, // 禁止空格和 tab 的混合缩进
     'spaced-comment': 2, // 强制在注释中 // 或 /* 使用一致的空格

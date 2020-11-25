@@ -1,38 +1,35 @@
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import Element from 'element-ui'
+import Vue from "vue"
+import App from "./App.vue"
+import router from "./router"
+import store from "./store"
+import Element from "element-ui"
+import * as utils from "@/utils"
+import "normalize.css/normalize.css" // a modern alternative to CSS resets
+import "element-ui/lib/theme-chalk/index.css";
+import "./permission.js"
+import "@/styles/index.scss" // global css
 
+import "./icons"
+import i18n from "./locales" // internationalization
 
-import 'normalize.css/normalize.css' // a modern alternative to CSS resets
-import 'element-ui/lib/theme-chalk/index.css';
-import './permission.js'
-import '@/styles/index.scss' // global css
-
-import './icons'
-import i18n from './locales' // internationalization
-
-import * as filters from '@/filters'
+import * as filters from "@/filters"
 Vue.config.productionTip = false;
-//修改默认card不显示阴影(主要用于界面布局)
-
-Element.Card.props.shadow.default = 'never';
-
-
+// 修改默认card不显示阴影(主要用于界面布局)
+Vue.prototype.$utils = utils;
+Element.Card.props.shadow.default = "never";
 
 Vue.use(Element, {
-        i18n: (key, value) => i18n.t(key, value)
-    }
+  i18n: (key, value) => i18n.t(key, value)
+}
 );
-//注册全局过滤器
+// 注册全局过滤器
 Object.keys(filters).forEach(key => {
-    Vue.filter(key,filters[key]);
+  Vue.filter(key, filters[key]);
 })
 
 new Vue({
   render: h => h(App),
-    router,
-    store,
-    i18n
-}).$mount('#app')
+  router,
+  store,
+  i18n
+}).$mount("#app")

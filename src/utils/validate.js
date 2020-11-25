@@ -1,6 +1,6 @@
-export const validUsername = str =>{
-    const valid_map = ['admin'];
-    return valid_map.indexOf(str.trim()) >= 0;
+export const validUsername = str => {
+  const validMap = ["admin"];
+  return validMap.indexOf(str.trim()) >= 0;
 }
 /**
  * 判断是否属于非routePath格式
@@ -8,5 +8,5 @@ export const validUsername = str =>{
  */
 
 export const isExternal = path => {
-    return /^(https?:|mailto:|tel:)/.test(path);
+  return /^(https?:|mailto:|tel:)/.test(path);
 }

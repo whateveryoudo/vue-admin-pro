@@ -32,3 +32,7 @@
     border-style: dashed;
   }
 }
+// table 复写
+.el-table td, .el-table th {
+  padding:12px;
+}

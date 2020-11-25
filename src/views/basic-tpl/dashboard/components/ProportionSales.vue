@@ -26,26 +26,26 @@
 </template>
 
 <script>
-    import {Bar} from '@/components/Charts'
-    import TodoList from './TodoList'
-    export default {
-        name: "ProportionSales",
-        data(){
-            return {
-                activeIndex : '1',
-                barTitle : '销售趋势'
-            }
-        },
-        components : {
-            Bar,
-            TodoList
-        },
-        methods : {
-            handleClick(){
-
-            }
-        }
+import { Bar } from "@/components/Charts"
+import TodoList from "./TodoList"
+export default {
+  name: "ProportionSales",
+  data () {
+    return {
+      activeIndex: "1",
+      barTitle: "销售趋势"
     }
+  },
+  components: {
+    Bar,
+    TodoList
+  },
+  methods: {
+    handleClick () {
+
+    }
+  }
+}
 </script>
 <style lang="scss">
     .sales-wrapper{

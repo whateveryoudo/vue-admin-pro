@@ -15,20 +15,20 @@
 </template>
 
 <script>
-    export default {
-        data(){
-            return {
-                title : 'vue-admin-pro',
-                logo: 'https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png'
-            }
-        },
-        props : {
-            collapse : {
-                type : Boolean,
-                require : true
-            }
-        }
+export default {
+  data () {
+    return {
+      title: "vue-admin-pro",
+      logo: "https://wpimg.wallstcn.com/69a1c46c-eb1c-4b46-8bd4-e9e686ef5251.png"
     }
+  },
+  props: {
+    collapse: {
+      type: Boolean,
+      require: true
+    }
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -66,7 +66,5 @@
             margin: 0;
         }
     }
-
-
 
 </style>

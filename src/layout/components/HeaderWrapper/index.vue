@@ -6,20 +6,20 @@
 </template>
 
 <script>
-    import Breadcrumb from '@/components/Breadcrumb'
-    export default {
-        name: "HeaderWrapper",
-        components : {
-            Breadcrumb
-        }
-    }
+import Breadcrumb from "@/components/Breadcrumb"
+export default {
+  name: "HeaderWrapper",
+  components: {
+    Breadcrumb
+  }
+}
 </script>
 
 <style lang="scss" scoped>
     .page-header-wrapper{
         overflow: hidden;
         background-color: #fff;
-        padding:16px 0;
-        padding-left: 24px;
+        padding:8px 0;
+        padding-left: 10px;
     }
 </style>

@@ -8,15 +8,15 @@
 </template>
 
 <script>
-    export default {
-        name: "Trend",
-        props : {
-            flag : {
-                type : String,
-                default : 'up'
-            }
-        }
+export default {
+  name: "Trend",
+  props: {
+    flag: {
+      type: String,
+      default: "up"
     }
+  }
+}
 </script>
 
 <style lang="scss" scoped>

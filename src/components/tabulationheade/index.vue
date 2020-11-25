@@ -1,5 +1,5 @@
 <template>
-    <div class="tabulation-header">  
+    <div class="tabulation-header">
         <el-row class="elrow elrow1">
           <el-col >{{title}}</el-col>
         </el-row>
@@ -10,14 +10,14 @@
 </template>
 
 <script>
-   
-    export default {
-        props:['title','titlecontent'],
-        name: "tabulationheade",
-        components : {
-            
-        }
-    }
+
+export default {
+  props: ["title", "titlecontent"],
+  name: "tabulationheade",
+  components: {
+
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -28,7 +28,7 @@
         /*border-bottom:1px solid #F00;
         border-top:1px solid #F00;*/
         background-color:#fff;
-        
+
         .elrow{
             margin-left:30px;
         }

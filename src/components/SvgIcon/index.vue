@@ -5,28 +5,28 @@
 </template>
 
 <script>
-    export default {
-        name: "index",
-        props : {
-            className : {
-                type : String,
-                default : ''
-            },
-            //图标类型（引用链接）
-            iconClass : {
-                type : String,
-                default: ''
-            }
-        },
-        computed : {
-            svgCls(){
-                return  `svg-icon ${this.className}`;
-            },
-            iconName(){
-                return  `#icon-${this.iconClass}`
-            }
-        }
+export default {
+  name: "index",
+  props: {
+    className: {
+      type: String,
+      default: ""
+    },
+    // 图标类型（引用链接）
+    iconClass: {
+      type: String,
+      default: ""
     }
+  },
+  computed: {
+    svgCls () {
+      return `svg-icon ${this.className}`;
+    },
+    iconName () {
+      return `#icon-${this.iconClass}`
+    }
+  }
+}
 </script>
 
 <style scoped>

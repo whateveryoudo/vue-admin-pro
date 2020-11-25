@@ -10,36 +10,36 @@ import { downFile } from "@/api/common";
 export default {
   name: "DownLoad",
   data () {
-      return {
-          percentage: 0
-      }
+    return {
+      percentage: 0
+    }
   },
   methods: {
-    async handleDownLoad() {
+    async handleDownLoad () {
       const res = await downFile({
-          id: 11
-      },evt => {
-          this.percentage = parseInt((evt.loaded / evt.total) * 100)
+        id: 11
+      }, evt => {
+        this.percentage = parseInt((evt.loaded / evt.total) * 100)
       });
       this.DataDownLoad(res);
     },
-    DataDownLoad(res) {
-      let blob = new Blob([res], {
+    DataDownLoad (res) {
+      const blob = new Blob([res], {
         type:
-          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel",
+          "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
       });
-    //   let contentDisposition = row.reportFileName;
-      let downloadElement = document.createElement("a");
-      let href = window.URL.createObjectURL(blob);
+      //   let contentDisposition = row.reportFileName;
+      const downloadElement = document.createElement("a");
+      const href = window.URL.createObjectURL(blob);
       downloadElement.style.display = "none";
       downloadElement.href = href;
-    //   downloadElement.download = contentDisposition;
+      //   downloadElement.download = contentDisposition;
       document.body.appendChild(downloadElement);
       downloadElement.click();
       document.body.removeChild(downloadElement);
       window.URL.revokeObjectURL(href);
-    },
-  },
+    }
+  }
 };
 </script>
 

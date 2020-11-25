@@ -37,56 +37,71 @@
 
 <script>
 import { validUsername } from "@/utils/validate";
-import { mapState, mapActions } from "vuex";
+import { mapState, mapActions, mapGetters } from "vuex";
 const validateUsername = (rule, value, callback) => {
   if (!validUsername(value)) {
-    callback("请输入正确的用户名");
+    callback(new Error("请输入正确的用户名"));
   } else {
     callback();
   }
 };
 const validatePassword = (rule, value, callback) => {
   if (value.length < 6) {
-    callback("密码不能少于6个字符");
+    callback(new Error("密码不能少于6个字符"));
   } else {
     callback();
   }
 };
 export default {
   name: "Login",
-  data() {
+  data () {
     return {
       formObj: {
         username: "",
-        password: "",
+        password: ""
       },
       loading: false,
       loginRules: {
         username: [{ required: true, validator: validateUsername }],
-        password: [{ required: true, validator: validatePassword }],
-      },
+        password: [{ required: true, validator: validatePassword }]
+      }
     };
   },
   computed: {
     ...mapState("user", ["name"]),
+    ...mapGetters("permission", ["transformedRoutes"])
   },
   methods: {
     ...mapActions("user", ["login"]),
-    handleLogin() {
+    ...mapActions("permission", ["generateRoutes", "getApplication"]),
+    handleLogin () {
+      if (this.loading) {
+        return;
+      } // 防止重复点击登录
       this.$refs.loginForm.validate(async (valid) => {
         if (valid) {
           this.loading = true;
           try {
             const res = await this.login(this.formObj);
-            this.loading = false;
-            this.$router.push("/");
+            const { code } = res;
+            if (code === 20000) {
+              // 获取当前用户应用列表
+              const appRes = await this.getApplication();
+              if (appRes.code === 20000 && appRes.data.length > 0) {
+                await this.generateRoutes(appRes.data[0].id); // 获取对应系统的菜单列表
+                this.loading = false;
+                if (this.transformedRoutes && this.transformedRoutes.length > 0) {
+                  this.$router.push(this.transformedRoutes[0].path);
+                }
+              }
+            }
           } catch (err) {
             this.loading = false;
           }
         }
       });
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="scss">

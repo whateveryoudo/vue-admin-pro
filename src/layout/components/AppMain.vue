@@ -9,14 +9,19 @@
 </template>
 
 <script>
-    import {mapState} from 'vuex'
-    export default {
-        name: 'AppMain',
-        data(){
-            return {}
-        },
-        computed : {
-            ...mapState('tabMenus',['cachedTabs'])
-        }
-    }
+import { mapState } from "vuex"
+export default {
+  name: "AppMain",
+  data () {
+    return {}
+  },
+  computed: {
+    ...mapState("tabMenus", ["cachedTabs"])
+  }
+}
 </script>
+<style lang="scss" scoped>
+  .app-main-contaienr{
+    padding: 10px;
+  }
+</style>

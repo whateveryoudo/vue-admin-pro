@@ -1,9 +1,9 @@
 //一些scss变量参数
+$theme: #409EFF; // 主题色
 $normalBg : #f0f2f5;//界面背景色
 
 $sideBarWidth : 210px;
 $colSideBarWidth : 54px;
-
 
 //深色sidebar
 
@@ -20,6 +20,7 @@ $light-menu-active-color : #409EFF;
 $light-menu-text : #303133;
 
 :export{
+  theme: $theme;
   sideBarWidth : $sideBarWidth;
   colSideBarWidth : $colSideBarWidth;
 
