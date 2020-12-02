@@ -17,7 +17,10 @@ Vue.config.productionTip = false;
 // 修改默认card不显示阴影(主要用于界面布局)
 Vue.prototype.$utils = utils;
 Element.Card.props.shadow.default = "never";
-
+const mediumComs = ["Form", "Button", "Input", "InputNumber"]; // 需要修改为medium的控件名称
+mediumComs.forEach(com => {
+  Element[com].props.size = { type: String, default: "medium" }; // 修改部分控件默认尺寸
+});
 Vue.use(Element, {
   i18n: (key, value) => i18n.t(key, value)
 }

@@ -1,4 +1,5 @@
 const appData = require("./db").appData;
+const { getUuid } = require("./util");
 const treeMenuMap = require("./db").treeMenuMap;
 const paramsMap = require("./db").paramsMap;
 module.exports = [
@@ -46,6 +47,20 @@ module.exports = [
       return {
         code: 20000,
         data: appInfo
+      }
+    }
+  },
+  // 应用添加
+  {
+    url: "/system-api/addApp",
+    type: "post",
+    response: (req) => {
+      const newApp = req.body;
+      const id = getUuid();
+      appData.push({ ...newApp, id });
+      return {
+        code: 20000,
+        data: true
       }
     }
   },

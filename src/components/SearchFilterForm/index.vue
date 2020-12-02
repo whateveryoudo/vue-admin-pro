@@ -46,7 +46,7 @@
 </template>
 
 <script>
-import { Input } from './fieldsComponents';
+import { Input } from "./fieldsComponents";
 export default {
   props: {
     filedValues: {
@@ -72,7 +72,7 @@ export default {
     },
     labelWidth: {
       type: [Object, Number, String],
-      default: 'auto'
+      default: "auto"
     },
     wrapperWidth: {
       type: [Object, Number, String]
@@ -106,48 +106,16 @@ export default {
   mounted () {},
   methods: {
     changeField (key, value) {
-      this.$emit('onChangeField', key, value);
+      this.$emit("onChangeField", key, value);
     },
     handleSearch () {
-      this.$emit('onSearch');
+      this.$emit("onSearch");
     },
     handleReset () {
-      this.$emit('onReset');
+      this.$emit("onReset");
     }
   }
 };
 </script>
 <style lang="scss">
-.table-search-filter {
-  margin-bottom: 16px;
-  .search-fields-wrapper>.el-col {
-    margin-bottom: 24px;
-  }
-  .el-col {
-    display: flex;
-    align-items: center;
-    .el-row {
-      display: flex;
-      align-items: center;
-    }
-    &.operation-wrapper {
-      justify-content: flex-end;
-    }
-
-    .label-text {
-      text-align: right;
-      &:after {
-        content: ":";
-        position: relative;
-        top: -0.5px;
-        margin: 0 8px 0 2px;
-      }
-    }
-  }
-  .collapse-up-pointer {
-    cursor: pointer;
-    margin-left: 20px;
-    color: #409eff;
-  }
-}
 </style>

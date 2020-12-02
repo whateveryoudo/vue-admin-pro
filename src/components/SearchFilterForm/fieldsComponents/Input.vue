@@ -1,5 +1,5 @@
 <template>
-  <el-row>
+  <el-row class="field-item-wrapper">
     <el-col v-bind="getItemWidth(labelWidth)" class="label-text">
       {{ label }}
     </el-col>
@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import filedsMixins from './fieldsMixins';
+import filedsMixins from "./fieldsMixins";
 export default {
   props: {
     value: [String, Number],
@@ -30,13 +30,16 @@ export default {
   mounted () {},
   methods: {
     handleInputChange (value) {
-      this.$emit('change', value);
+      this.$emit("change", value);
     },
     handleEnterChange (value) {
-      this.$emit('enter', value);
+      this.$emit("enter", value);
     }
   }
 };
 </script>
-<style scoped>
+<style lang="scss" scoped>
+.field-item-wrapper{
+  width: 100%;
+}
 </style>

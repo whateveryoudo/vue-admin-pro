@@ -8,11 +8,17 @@
         <DetailListItem term="应用名称">{{
           detailInfo.title | nullText
         }}</DetailListItem>
-        <DetailListItem term="应用状态">{{
-          detailInfo.status | nullText
-        }}</DetailListItem>
+        <DetailListItem term="应用状态">
+           <span
+              :style="{
+                color: getTypeDesc(detailInfo.status, 'APP_STATUS').color,
+              }"
+            >
+              {{ getTypeDesc(detailInfo.status, "APP_STATUS").text }}
+            </span>
+        </DetailListItem>
         <DetailListItem term="应用图标"></DetailListItem>
-        <DetailListItem term="应用描述" col="1">{{
+        <DetailListItem term="应用描述" itemCol="1">{{
           detailInfo.desc | nullText
         }}</DetailListItem>
       </DetailList>
@@ -22,6 +28,7 @@
 
 <script>
 import DetailList from "@/components/DetailList/index.vue";
+import formatMixins from "@/mixins/formatMixins";
 import { fetchDetail } from "@/api/appManage";
 export default {
   props: {
@@ -34,6 +41,7 @@ export default {
       default: ""
     }
   },
+  mixins: [formatMixins],
   components: {
     DetailList,
     DetailListItem: DetailList.Item
@@ -41,7 +49,10 @@ export default {
   data () {
     return {
       loading: false,
-      detailInfo: {}
+      detailInfo: {},
+      vuexOptionsList: [
+        { typeKey: "APP_STATUS", actionKey: "getParamsByType" }
+      ]
     };
   },
   computed: {},

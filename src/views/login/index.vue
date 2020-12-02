@@ -90,7 +90,10 @@ export default {
               if (appRes.code === 20000 && appRes.data.length > 0) {
                 await this.generateRoutes(appRes.data[0].id); // 获取对应系统的菜单列表
                 this.loading = false;
-                if (this.transformedRoutes && this.transformedRoutes.length > 0) {
+                if (
+                  this.transformedRoutes &&
+                  this.transformedRoutes.length > 0
+                ) {
                   this.$router.push(this.transformedRoutes[0].path);
                 }
               }

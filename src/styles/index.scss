@@ -43,6 +43,38 @@ a:hover {
 .page-basic-layout{
   margin: 24px;
 }
+// 表格通用
+.table-search-filter {
+  .search-fields-wrapper>.el-col {
+    margin-bottom: 24px;
+  }
+  .el-col {
+    display: flex;
+    align-items: center;
+    .el-row {
+      display: flex;
+      align-items: center;
+    }
+    &.operation-wrapper {
+      justify-content: flex-end;
+    }
+
+    .label-text {
+      text-align: right;
+      &:after {
+        content: ":";
+        position: relative;
+        top: -0.5px;
+        margin: 0 8px 0 2px;
+      }
+    }
+  }
+  .collapse-up-pointer {
+    cursor: pointer;
+    margin-left: 20px;
+    color: #409eff;
+  }
+}
 // table - 分页
 .table-pagination-wrapper {
   text-align: right;

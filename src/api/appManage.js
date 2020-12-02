@@ -14,4 +14,18 @@ export function fetchDetail (id) {
     params: { id }
   })
 }
+export function addApp (data) {
+  return request({
+    url: `${PREFIX.API_BASE}/addApp`,
+    method: "post",
+    data
+  })
+}
+export function editApp (data) {
+  return request({
+    url: `${PREFIX.API_BASE}/editApp`,
+    method: "post",
+    data
+  })
+}
 

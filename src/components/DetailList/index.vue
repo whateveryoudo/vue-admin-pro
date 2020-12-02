@@ -23,6 +23,9 @@ const Item = {
     term: {
       type: String,
       default: ""
+    },
+    itemCol: {
+      type: [String, Number]
     }
   },
   inject: {
@@ -32,7 +35,7 @@ const Item = {
   },
   render () {
     return (
-      <el-col {...{ props: responsive[this.col] }}>
+      <el-col {...{ props: responsive[this.itemCol || this.col] }}>
         <div class="term">{this.$props.term}</div>
         <div class="content">{this.$slots.default}</div>
       </el-col>

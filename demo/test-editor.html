@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="div1" style="width:500px">
+        <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
+    </div>
+</body>
+<script type="text/javascript" src="https://unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
+<script type="text/javascript">
+    const E = window.wangEditor
+    const editor = new E('#div1');
+    editor.config.height = 500
+    // 或者 const editor = new E( document.getElementById('div1') )
+    editor.create()
+</script>
+</html>
