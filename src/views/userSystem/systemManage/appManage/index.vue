@@ -83,6 +83,7 @@ import tableMixins from "@/mixins/tableMixins";
 import formatMixins from "@/mixins/formatMixins";
 import { fetchList } from "@/api/appManage";
 import { operationData, searchFormData, searchOptData } from "./tableDataConfig";
+import { toggleModal } from "@/utils"
 import AppDetail from "./components/AppDetail";
 import AppEdit from "./components/AppEdit";
 export default {
@@ -116,20 +117,7 @@ export default {
   },
   created () {},
   methods: {
-    // 弹框显示切换(采用两个变量控制过渡效果)
-    toggleModal (modalKey, flag = true) {
-      if (flag) {
-        this[modalKey].destroy = flag;
-        this.$nextTick(() => {
-          this[modalKey].visible = flag;
-        });
-      } else {
-        this[modalKey].visible = flag;
-        setTimeout(() => {
-          this[modalKey].destroy = flag;
-        }, 200);
-      }
-    },
+    toggleModal,
     handleAdd () {
       this.isEdit = false;
       this.toggleModal("appEditVisible");

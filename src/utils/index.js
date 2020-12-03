@@ -95,4 +95,21 @@ export const swapArray = (arr, index1, index2) => {
   arr[index1] = arr.splice(index2, 1, arr[index1])[0];
   return arr;
 }
+// 弹框显示切换(采用两个变量控制dialog过渡效果, 这里不要使用=>函数)
+export const toggleModal = function (modalKey, flag = true) {
+  if (!modalKey || !this[modalKey]) {
+    throw new Error("请在组件\"data\"中声明相关属性")
+  }
+  if (flag) {
+    this[modalKey].destroy = flag;
+    this.$nextTick(() => {
+      this[modalKey].visible = flag;
+    });
+  } else {
+    this[modalKey].visible = flag;
+    setTimeout(() => {
+      this[modalKey].destroy = flag;
+    }, 200);
+  }
+}
 

@@ -2,6 +2,7 @@ import Vue from "vue"
 import App from "./App.vue"
 import router from "./router"
 import store from "./store"
+import VueCropper from "vue-cropper"
 import Element from "element-ui"
 import * as utils from "@/utils"
 import "normalize.css/normalize.css" // a modern alternative to CSS resets
@@ -25,6 +26,7 @@ Vue.use(Element, {
   i18n: (key, value) => i18n.t(key, value)
 }
 );
+Vue.use(VueCropper)
 // 注册全局过滤器
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key]);
