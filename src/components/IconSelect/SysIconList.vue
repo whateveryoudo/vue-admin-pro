@@ -41,7 +41,7 @@ export default {
   methods: {
     handleChoose (name) {
       this.handleClose();
-      this.$emit("onChoose", name);
+      this.$emit("onChoose", name, "sys");
     },
     handleClose () {
       this.$emit("closeModal");

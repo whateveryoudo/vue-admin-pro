@@ -47,9 +47,9 @@ export default {
   created () {},
   mounted () {},
   methods: {
-    handleChoose (name) {
+    handleChoose (name, type) {
       this.handleClose();
-      this.$emit("onChoose", name)
+      this.$emit("onChoose", name, type)
     },
     handleClose () {
       this.$emit("closeModal");

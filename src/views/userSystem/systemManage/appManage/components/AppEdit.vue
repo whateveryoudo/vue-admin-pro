@@ -50,15 +50,11 @@
         <el-input
           v-model="form.icon"
           readonly
-          @click.native="toggleIconModalVisible()"
+          @click.native="toggleModal('iconModalVisible')"
           placeholder="请选择"
           autocomplete="off"
         >
-          <i
-            :class="form.icon"
-            slot="append"
-            v-if="form.icon"
-          ></i>
+          <IconItem  slot="append" :url="form.icon" :type="iconType"/>
         </el-input>
       </el-form-item>
       <el-form-item
@@ -97,15 +93,18 @@
     <IconSelect
       @onChoose="handleChoosed"
       append-to-body
-      :visible="iconModalVisible"
-      @closeModal="toggleIconModalVisible(false)"
+      v-if="iconModalVisible.destroy"
+      :visible="iconModalVisible.visible"
+      @closeModal="toggleModal('iconModalVisible',false)"
     />
   </el-dialog>
 </template>
 
 <script>
 import IconSelect from "@/components/IconSelect";
-import { addApp, editApp } from "@/api/appManage"
+import IconItem from "@/components/IconSelect/IconItem";
+import { addApp, editApp } from "@/api/appManage";
+import { toggleModal } from "@/utils";
 export default {
   name: "AppEdit",
   props: {
@@ -129,8 +128,12 @@ export default {
     return {
       loading: false,
       formLabelWidth: "120px",
+      iconType: "",
       btnLoading: false,
-      iconModalVisible: false,
+      iconModalVisible: {
+        visible: true,
+        destroy: true
+      },
       form: {
         code: "",
         title: "",
@@ -168,12 +171,14 @@ export default {
     }
   },
   components: {
-    IconSelect
+    IconSelect,
+    IconItem
   },
   created () {
     this.isEdit && this.menuId && this.initForm();
   },
   methods: {
+    toggleModal,
     // 初始化列表
     async initForm () {
       this.loading = true;
@@ -181,11 +186,9 @@ export default {
       this.loading = false;
       this.form = res.data && res.data.menuInfo;
     },
-    toggleIconModalVisible (flag = true) {
-      this.iconModalVisible = flag;
-    },
-    handleChoosed (name) {
-      this.form.icon = "el-icon-" + name;
+    handleChoosed (name, type) {
+      this.form.icon = type === "elem" ? "el-icon-" + name : name;
+      this.iconType = type;
     },
     handleClose () {
       this.$emit("closeModal");

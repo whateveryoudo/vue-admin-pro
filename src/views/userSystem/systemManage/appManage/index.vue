@@ -19,26 +19,43 @@
         style="width: 100%; margin-bottom: 20px"
         row-key="id"
       >
-        <el-table-column prop="sequence" label="序号">
+        <el-table-column
+          prop="sequence"
+          label="序号"
+        >
           <template slot-scope="{ scope, $index }">
             {{ $index + 1 }}
           </template>
         </el-table-column>
-        <el-table-column prop="code" label="应用编码"></el-table-column>
-        <el-table-column prop="title" label="应用名称"></el-table-column>
-        <el-table-column prop="state" label="应用状态">
+        <el-table-column
+          prop="code"
+          label="应用编码"
+        ></el-table-column>
+        <el-table-column
+          prop="title"
+          label="应用名称"
+        ></el-table-column>
+        <el-table-column
+          prop="state"
+          label="应用状态"
+        >
           <template slot-scope="scope">
-            <span
-              :style="{
+            <span :style="{
                 color: getTypeDesc(scope.row.status, 'APP_STATUS').color,
-              }"
-            >
+              }">
               {{ getTypeDesc(scope.row.status, "APP_STATUS").text }}
             </span>
           </template>
         </el-table-column>
-        <el-table-column prop="sort" label="排序"></el-table-column>
-        <el-table-column prop="operation" label="操作" width="260">
+        <el-table-column
+          prop="sort"
+          label="排序"
+        ></el-table-column>
+        <el-table-column
+          prop="operation"
+          label="操作"
+          width="260"
+        >
           <template slot-scope="scope">
             <OperationRender
               :triggerEvent="(item) => handleClick(item, scope.row)"
@@ -74,6 +91,7 @@
       :isEdit="isEdit"
       :appId="record.id"
       @refreshTable="queryData(true)"
+      @closeModal="toggleModal('appEditVisible', false)"
     />
   </div>
 </template>
@@ -82,15 +100,20 @@
 import tableMixins from "@/mixins/tableMixins";
 import formatMixins from "@/mixins/formatMixins";
 import { fetchList } from "@/api/appManage";
-import { operationData, searchFormData, searchOptData } from "./tableDataConfig";
-import { toggleModal } from "@/utils"
+import {
+  operationData,
+  searchFormData,
+  searchOptData
+} from "./tableDataConfig";
+import { toggleModal } from "@/utils";
 import AppDetail from "./components/AppDetail";
 import AppEdit from "./components/AppEdit";
 export default {
   name: "AppManage",
   mixins: [tableMixins, formatMixins],
   components: {
-    AppDetail, AppEdit
+    AppDetail,
+    AppEdit
   },
   data () {
     return {

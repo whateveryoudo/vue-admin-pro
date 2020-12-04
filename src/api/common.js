@@ -7,3 +7,13 @@ export function getFormatParams (data) {
     data
   })
 }
+
+export function uploadFile (data) {
+  return request(`${PREFIX.API_FILE}/upload`, {
+    headers: {
+      "Content-Type": "multipart/form-data"
+    },
+    method: "post",
+    data
+  })
+}
