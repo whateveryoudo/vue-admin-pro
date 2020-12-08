@@ -17,6 +17,7 @@
         slot="file"
         slot-scope="{file}"
         class="el-upload-list__item-wrapper"
+        @click="handleChoose(file)"
       >
         <img
           class="el-upload-list__item-thumbnail"
@@ -53,10 +54,6 @@
         </div>
       </div>
     </el-upload>
-    <form action="/mock/file-api/upload" method="post" enctype="multipart/form-data">
-      <input type="file" class="files" id="files" name="files">
-      <input type="submit" class="uploadFile" value="文件上传">
-    </form>
     <div class="bto-setting">
       <el-button
         type="primary"
@@ -189,7 +186,6 @@ export default {
       console.log(params);
     },
     async uploadAndSetting () {
-      debugger;
       if (this.fileList && this.fileList.length > 0) {
         const target = this.fileList.find(item => item.url === this.choosedUrl);
         if (target.status === "success") { // 直接设置
@@ -198,7 +194,9 @@ export default {
           const formData = new FormData();
           formData.append("file", target.raw);
           const res = await uploadFile(formData);
-          console.log(res);
+          if (res && res.code === 20000) { // 这里为本地传输(会无法显示图片，如何配置多端口？？)
+            target.url = res.data.url;
+          }
         }
       }
     }
@@ -219,6 +217,7 @@ export default {
     }
   }
   .el-upload-list__item-actions {
+  cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;

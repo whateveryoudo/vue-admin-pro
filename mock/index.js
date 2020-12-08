@@ -12,22 +12,19 @@ const mocks = [
   ...application
 ]
 
-const responseFake = (url, type, respond) => {
+const responseFake = (url, type, respond, useSelfReturn = false) => {
   return {
     url: new RegExp(`/mock${url}`),
     type: type || "get",
     response (req, res) {
-      res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
+      useSelfReturn ? respond(req, res)
+        : res.json(Mock.mock(respond instanceof Function ? respond(req, res) : respond))
     }
   }
 }
 
-// export default mocks.map(route => {
-//   return responseFake(route.url,route.type,route.response);
-// })
-
 module.exports = {
   mocks: mocks.map(route => {
-    return responseFake(route.url, route.type, route.response);
+    return responseFake(route.url, route.type, route.response, route.useSelfReturn);
   })
 }

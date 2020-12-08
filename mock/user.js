@@ -23,6 +23,7 @@ module.exports = [
     url: "/user-api/login",
     type: "post",
     response: config => {
+      console.log(111);
       const { username } = config.body;
       const token = tokens[username];
       const userInfo = users[token];
