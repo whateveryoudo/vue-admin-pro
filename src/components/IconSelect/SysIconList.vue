@@ -7,6 +7,7 @@
             v-for="iconLink in sysIconData"
             :key="iconLink"
             @click="handleChoose(iconLink)"
+            :class="[curIcon === iconLink && 'selected']"
           >
             <svg-icon :iconClass="iconLink"></svg-icon>
           </li>
@@ -27,6 +28,9 @@ export default {
     appendToBody: {
       type: Boolean,
       default: false
+    },
+    curIcon: {
+      type: String
     }
   },
   data () {
@@ -82,6 +86,11 @@ export default {
   color: #606266;
   margin: 0;
   transition: color 0.15s linear;
+}
+.icon-list li.selected {
+  svg {
+    color: #5cb6ff;
+  }
 }
 .icon-list li:hover svg {
   color: #5cb6ff;

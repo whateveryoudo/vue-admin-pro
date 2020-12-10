@@ -7,6 +7,7 @@
             v-for="name in elemIconData"
             :key="name"
             @click="handleChoose(name)"
+            :class="[curIcon === `el-icon-${name}` && 'selected']"
           >
             <span>
               <i :class="'el-icon-' + name"></i>
@@ -29,6 +30,9 @@ export default {
     appendToBody: {
       type: Boolean,
       default: false
+    },
+    curIcon: {
+      type: String
     }
   },
   data () {
@@ -88,6 +92,11 @@ export default {
     "Microsoft YaHei", SimSun, sans-serif;
   color: #99a9bf;
   transition: color 0.15s linear;
+}
+.icon-list li.selected {
+  span,i {
+    color: #5cb6ff;
+  }
 }
 .icon-list li:hover span,
 .icon-list li:hover i {

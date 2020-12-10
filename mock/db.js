@@ -17,6 +17,7 @@ const treeMenuMap = {
     }
   ]
 }
+const uploadedFilePath = ["https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"]
 const paramsMap = {
   SYSTEM_MENU_TYPE: [
     { value: 1, label: "菜单" },
@@ -34,5 +35,6 @@ const paramsMap = {
 module.exports = {
   appData,
   treeMenuMap,
-  paramsMap
+  paramsMap,
+  uploadedFilePath
 }

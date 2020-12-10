@@ -17,7 +17,6 @@
         slot="file"
         slot-scope="{file}"
         class="el-upload-list__item-wrapper"
-        @click="handleChoose(file)"
       >
         <img
           class="el-upload-list__item-thumbnail"
@@ -58,6 +57,7 @@
       <el-button
         type="primary"
         :disabled="!choosedUrl"
+        :loading="loading"
         @click="uploadAndSetting"
       >上传并且设置</el-button>
     </div>
@@ -83,18 +83,13 @@
 <script>
 import { toggleModal } from "@/utils";
 import TailorImg from "@/components/TailorImg";
-import { uploadFile } from "@/api/common"
+import { uploadFile, deleteFile, initFileList } from "@/api/common"
 export default {
   data () {
     return {
       choosedUrl: "",
-      fileList: [
-        {
-          name: "11",
-          url:
-            "https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg"
-        }
-      ],
+      loading: false, // 上传loading
+      fileList: [],
       optIcons: [
         {
           label: "查看大图",
@@ -136,8 +131,17 @@ export default {
   components: {
     TailorImg
   },
+  mounted () {
+    this.initFileList();
+  },
   methods: {
     toggleModal,
+    async initFileList () {
+      const res = await initFileList();
+      if (res && res.code === 20000) {
+        this.fileList = res.data.map(item => ({ url: item }));
+      }
+    },
     beforeUpload (file) {
       const isImg = ["image/jpeg", "image/png"].includes(file.type);
       const isLt2M = file.size / 1024 / 1024 < 2;
@@ -163,8 +167,17 @@ export default {
       this.optFile = file;
       this.toggleModal("tailorVisible");
     },
-    handleRemove (file) {
-      console.log(file);
+    async handleRemove (file) {
+      const { status, url } = file;
+      const delIndex = this.fileList.findIndex(item => item.url === url);
+      if (status === "success") {
+        const res = await deleteFile(file.url);
+        if (res && res.code === 20000) {
+          this.fileList.splice(delIndex, 1);
+        }
+      } else {
+        this.fileList.splice(delIndex, 1);
+      }
     },
     handleRestore (file) {
       this.optFile.url = file.originUrl;
@@ -193,9 +206,12 @@ export default {
         } else {
           const formData = new FormData();
           formData.append("file", target.raw);
+          this.loading = true;
           const res = await uploadFile(formData);
-          if (res && res.code === 20000) { // 这里为本地传输(会无法显示图片，如何配置多端口？？)
+          this.loading = false;
+          if (res && res.code === 20000) { // 这里为本地传输(会无法显示图片，无法配置多端口？？)
             target.url = res.data.url;
+            this.$emit("onChoose", target.url, "img");
           }
         }
       }

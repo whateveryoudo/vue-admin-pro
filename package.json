@@ -12,7 +12,7 @@
     "axios": "0.18.1",
     "clipboard": "2.0.4",
     "core-js": "^2.6.5",
-    "echarts": "4.2.1",
+    "echarts": "^4.2.1",
     "element-ui": "2.11.0",
     "multiparty": "^4.2.2",
     "normalize.css": "7.0.0",

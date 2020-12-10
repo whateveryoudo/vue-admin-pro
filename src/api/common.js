@@ -8,6 +8,11 @@ export function getFormatParams (data) {
   })
 }
 
+export function initFileList () {
+  return request(`${PREFIX.API_FILE}/list`, {
+    method: "get"
+  })
+}
 export function uploadFile (data) {
   return request(`${PREFIX.API_FILE}/upload`, {
     headers: {
@@ -15,5 +20,11 @@ export function uploadFile (data) {
     },
     method: "post",
     data
+  })
+}
+export function deleteFile (path) {
+  return request(`${PREFIX.API_FILE}/delete`, {
+    method: "post",
+    data: { path }
   })
 }

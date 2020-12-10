@@ -5,25 +5,48 @@
     :visible="visible"
     @close="handleClose"
   >
-  <el-tabs v-model="activeKey">
-    <el-tab-pane label="elem图标" name="1">
-      <ElemIconList @onChoose="handleChoose" @closeModal="handleClose"/>
-    </el-tab-pane>
-    <el-tab-pane label="系统内置图标" name="2">
-      <SysIconList @onChoose="handleChoose" @closeModal="handleClose"/>
-    </el-tab-pane>
-    <el-tab-pane label="自定义上传" name="3">
-      <UploadIcon @onChoose="handleChoose" @closeModal="handleClose"/>
-    </el-tab-pane>
-  </el-tabs>
+    <el-tabs v-model="activeKey">
+      <el-tab-pane
+        label="elem图标"
+        name="1"
+      >
+        <ElemIconList
+          @onChoose="handleChoose"
+          @closeModal="handleClose"
+          :curIcon="curIcon"
+        />
+      </el-tab-pane>
+      <el-tab-pane
+        label="系统内置图标"
+        name="2"
+      >
+        <SysIconList
+          @onChoose="handleChoose"
+          @closeModal="handleClose"
+          :curIcon="curIcon"
+        />
+      </el-tab-pane>
+      <!-- 延迟渲染 -->
+      <el-tab-pane
+        label="自定义上传"
+        name="3"
+        lazy
+      >
+        <UploadIcon
+          @onChoose="handleChoose"
+          @closeModal="handleClose"
+          :curIcon="curIcon"
+        />
+      </el-tab-pane>
+    </el-tabs>
   </el-dialog>
 </template>
 
 <script>
 import iconData from "./iconData";
-import ElemIconList from "./ElemIconList"
-import SysIconList from "./SysIconList"
-import UploadIcon from "./UploadIcon"
+import ElemIconList from "./ElemIconList";
+import SysIconList from "./SysIconList";
+import UploadIcon from "./UploadIcon";
 export default {
   props: {
     visible: {
@@ -33,23 +56,28 @@ export default {
     appendToBody: {
       type: Boolean,
       default: false
+    },
+    curIcon: {
+      type: String
     }
   },
   data () {
     return {
       iconData,
-      activeKey: "3"
+      activeKey: "1"
     };
   },
   components: {
-    ElemIconList, SysIconList, UploadIcon
+    ElemIconList,
+    SysIconList,
+    UploadIcon
   },
   created () {},
   mounted () {},
   methods: {
     handleChoose (name, type) {
       this.handleClose();
-      this.$emit("onChoose", name, type)
+      this.$emit("onChoose", name, type);
     },
     handleClose () {
       this.$emit("closeModal");

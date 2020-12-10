@@ -50,7 +50,7 @@
         <el-input
           v-model="form.icon"
           readonly
-          @click.native="toggleModal('iconModalVisible')"
+          @click.native="handleShowChooseIcon"
           placeholder="请选择"
           autocomplete="off"
         >
@@ -93,6 +93,7 @@
     <IconSelect
       @onChoose="handleChoosed"
       append-to-body
+      :curIcon="form.icon"
       v-if="iconModalVisible.destroy"
       :visible="iconModalVisible.visible"
       @closeModal="toggleModal('iconModalVisible',false)"
@@ -179,6 +180,9 @@ export default {
   },
   methods: {
     toggleModal,
+    handleShowChooseIcon () {
+      this.toggleModal("iconModalVisible");
+    },
     // 初始化列表
     async initForm () {
       this.loading = true;
