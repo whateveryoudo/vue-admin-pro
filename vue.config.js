@@ -37,6 +37,7 @@ module.exports = {
         "@userSys": resolve("src/views/userSystem") // 指向用户系统
       }
     },
+    entry: "./src/main.ts",
     devtool: "source-map"
   },
   chainWebpack (config) {
